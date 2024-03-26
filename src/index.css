@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'ggsans';
+    font-style: normal;
+    font-display: swap;
+    src: url('/src/assets/fonts/ggsans-Normal.ttf') format('woff2');
+  }
+  @font-face {
+    font-family: 'ggsansl';
+    font-style: normal;
+    font-display: swap;
+    src: url('/src/assets/fonts/ggsans-Semibold.ttf') format('woff2');
+  }
+  @font-face {
+    font-family: 'ggsansxl';
+    font-style: normal;
+    font-display: swap;
+    src: url('/src/assets/fonts/ggsans-ExtraBold.ttf') format('woff2');
+  }
+}
