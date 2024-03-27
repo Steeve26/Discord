@@ -11,8 +11,14 @@ import Nitro from '../assets/icons/nitro';
 import Messages from '../assets/icons/message';
 import Shop from '../assets/icons/shop';
 import headphone from '../assets/headphones2.png';
+import headphoneoff from '../assets/headphone-off.png';
 import DiscordServer from './discordServer'
 import Profile from "./profile";
+import { useState } from "react";
+import micOff from '../assets/mic-off.mp3';
+import micOn from '../assets/mic-on.mp3';
+import headOff from '../assets/headphone-off.mp3';
+import headOn from '../assets/headphone-on.mp3';
 
 export default function sidebar() {
   const friends = [
@@ -42,6 +48,19 @@ export default function sidebar() {
     {name: 'mikes0ap', icon: 'https://cdn.discordapp.com/avatars/586649116516417537/490f60ba50f5b2e98b3b685a65a2cbd6.webp?size=40'}, 
     {name: 'rogueWanted47', icon: 'https://cdn.discordapp.com/avatars/548543803133394955/cac5e802a04c203480e5f754130883ab.webp?size=40'}
   ]
+
+  const [toggles, setToggles] = useState({mic: 'false', headphone: 'false'})
+
+  const hOff = new Audio(headOff) 
+  const hOn = new Audio(headOn)
+  const mcOff = new Audio(micOff) 
+  const mcOn = new Audio(micOn)
+
+  const audioFiles = [hOff, hOn, mcOff, mcOn];
+
+  audioFiles.forEach(audio => {
+      audio.volume = 0.4;
+  });
 
   return (
     <div className='h-screen flex'>
@@ -118,13 +137,20 @@ export default function sidebar() {
           </div>
 
           <div className="controls flex items-center justify-end gap-[2px] flex-1">
-            <button className=" flex items-center justify-center w-8 h-8 hover:bg-highlightLightGrey p-2 rounded-[4px]"><FaMicrophone color="#b5bac1" size={17}/></button>
-            <button className=" flex items-center justify-center w-8 h-8 mr-[3.5px] hover:bg-highlightLightGrey w-8 p-1 rounded-[4px]"><img src={headphone} alt="icon" className="w-[25px]"/></button>
+            <button onClick={() => {toggles.mic ? mcOff.play() : mcOn.play(); setToggles(prev => ({...prev, mic: !prev.mic})); !toggles.mic && setToggles(prev => ({...prev, headphone: true}))}} className="flex items-center justify-center w-8 h-8 relative hover:bg-highlightLightGrey p-2 rounded-[4px]">
+              {toggles.mic ? <FaMicrophone color="#b5bac1" size={17}/> : 
+              <FaMicrophoneSlash className=" absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] scale-x-[-1]" color="#f23f42" size={22}/>}
+            </button>
+
+            <button onClick={() => {toggles.headphone ? hOff.play() : hOn.play(); setToggles(prev => ({...prev, headphone: !prev.headphone})); toggles.headphone && setToggles(prev => ({...prev, mic: false}))}} 
+            className=" flex items-center justify-center w-8 h-8 hover:bg-highlightLightGrey w-8 p-1 rounded-[4px]">
+              <img src={toggles.headphone ? headphone : headphoneoff } alt="icon" 
+              className={`${toggles.headphone ? 'w-6' : 'w-5 translate-x-[-1px]'}`}/>
+            </button>
             <button className=" flex items-center justify-center w-8 h-8 hover:bg-highlightLightGrey p-1 rounded-[4px]"><RiSettings5Fill color="#b5bac1" size={20}/></button>
           </div>
         </div>
-
-
+        
       </div>
 
     </div>
