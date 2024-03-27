@@ -22,3 +22,24 @@
     src: url('/src/assets/fonts/ggsans-ExtraBold.ttf') format('woff2');
   }
 }
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  .scrollbar-track::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: transparent;
+  }
+
+  .scrollbar-thumb::-webkit-scrollbar-thumb {
+    background: #1e1f22;
+    border-radius: 100vh;
+  }
+
+  .scrollbar-thumbhover::-webkit-scrollbar-thumb:hover {
+    background: #4d4e57;
+  }
+}

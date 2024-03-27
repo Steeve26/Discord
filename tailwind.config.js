@@ -8,11 +8,13 @@ export default {
     extend:{
       colors: {
         primary: '#1e1f22',
+        primaryLight: '#232428',
         secondary: '#313338',
-        sidebarDark: '#313338',
+        secondaryDark: '#2b2d31',
+        highlightLightGrey: '#3d3e45',
+        textGrey: '#949ba4',
         brightGreen: '#23a559',
         discordBlue: '#5865f2',
-        highlightLightGrey: '#3d3e45'
       },
       fontFamily: {
         ggSans: ['ggSans', 'sans'],
