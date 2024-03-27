@@ -63,7 +63,7 @@ export default function sidebar() {
   });
 
   return (
-    <div className='h-screen flex'>
+    <div className='h-full flex'>
       <div className="flex flex-col bg-primary text-white shadow-lg pt-2 w-[4.5rem] h-full">
         <div className='mx-auto w-[80%] mb-3'><img src={logo} alt="discord logo"/></div>
         <DiscordServer icon={<FaDiscord color='white' size={33}/>} first={true}/>
