@@ -144,7 +144,7 @@ export default function sidebar() {
 
             <button onClick={() => {toggles.headphone ? hOff.play() : hOn.play(); setToggles(prev => ({...prev, headphone: !prev.headphone})); toggles.headphone && setToggles(prev => ({...prev, mic: false}))}} 
             className=" flex items-center justify-center w-8 h-8 hover:bg-highlightLightGrey w-8 p-1 rounded-[4px]">
-              <img src={toggles.headphone ? headphone : headphoneoff } alt="icon" loading="lazy" 
+              <img src={toggles.headphone ? headphone : "https://i.imgur.com/ni2Ss3z.png" } alt="icon" loading="lazy" 
               className={`${toggles.headphone ? 'w-6' : 'w-5 translate-x-[-1px]'}`}/>
             </button>
             <button className=" flex items-center justify-center w-8 h-8 hover:bg-highlightLightGrey p-1 rounded-[4px]"><RiSettings5Fill color="#b5bac1" size={20}/></button>
