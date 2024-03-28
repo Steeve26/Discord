@@ -81,29 +81,29 @@ export default function sidebar() {
         <DiscordServer icon={<GoDownload size={25}/>} type='actions'/>
       </div>
 
-      <div className="w-60 bg-secondaryDark">
+      <div className="side-sidebar w-60 bg-secondaryDark">
         <div className='searchBar h-[50px] shadow-borderShadow flex items-center justify-center px-3'>
           <input type="text" className="bg-primary w-full rounded-[4px] text-sm pl-2 py-1 text-textGrey placeholder:text-textGrey" placeholder="Find or start a conversation" />
         </div>
 
-        <div className="content h-[calc(100%-103px)] pl-2 pt-2 pb-2 overflow-y-auto scroll scrollbar scrollbar-track scrollbar-thumb scrollbar-thumbhover">
+        <div className=" sidebarHover pr-[10px] hover:pr-0 content h-[calc(100%-103px)] pl-2 pt-2 pb-2 overflow-y-auto scroll scrollbar scrollbar-track scrollbar-thumb scrollbar-thumbhover">
           <div className="buttons flex flex-col gap-0.5 mb-5">
-            <button className='flex items-center pl-[18px]  w-full hover:bg-[#404249] rounded-md h-[42px] mr-[1px] 
+            <button className='flex items-center pl-[18px]  w-full hover:bg-secondHighlightGrey rounded-md h-[42px] mr-[1px] 
             capitalize text-textGrey font-medium leading-5 hover:text-[#dbdee1] gap-4 active:brightness-110'>
               <Friend size={'1.55'}/>
               <p className='font-ggSansl'>friends</p>
             </button>
-            <button className='flex items-center pl-4  w-full hover:bg-[#404249] rounded-md h-[42px] mr-[1px] 
+            <button className='flex items-center pl-4  w-full hover:bg-secondHighlightGrey rounded-md h-[42px] mr-[1px] 
             capitalize text-textGrey font-medium leading-5 hover:text-[#dbdee1] gap-4 active:brightness-110'>
               <Nitro size={'1.55'}/>
               <p className='font-ggSansl'>nitro</p>
             </button>
-            <button className='flex items-center pl-4  w-full hover:bg-[#404249] rounded-md h-[42px] mr-[1px] 
+            <button className='flex items-center pl-4  w-full hover:bg-secondHighlightGrey rounded-md h-[42px] mr-[1px] 
             capitalize text-textGrey font-medium leading-5 hover:text-[#dbdee1] gap-4 active:brightness-110'>
               <Messages size={'1.55'}/>
               <p className='font-ggSansl'>message requests</p>
             </button>
-            <button className='flex items-center pl-4  w-full hover:bg-[#404249] rounded-md h-[42px] mr-[1px] 
+            <button className='flex items-center pl-4  w-full hover:bg-secondHighlightGrey rounded-md h-[42px] mr-[1px] 
             capitalize text-textGrey font-medium leading-5 hover:text-[#dbdee1] gap-4 active:brightness-110'>
               <Shop size={'1.55'}/>
               <p className='font-ggSansl'>shop</p>

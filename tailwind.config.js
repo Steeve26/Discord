@@ -12,6 +12,7 @@ export default {
         secondary: '#313338',
         secondaryDark: '#2b2d31',
         highlightLightGrey: '#3d3e45',
+        secondHighlightGrey: '#43444b',
         textGrey: '#949ba4',
         brightGreen: '#23a559',
         discordBlue: '#5865f2',
