@@ -46,4 +46,23 @@
   .scrollbar-thumbhover::-webkit-scrollbar-thumb:hover {
     background: #4d4e57;
   }
+
+  .friendList::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  .friendList-track::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: transparent;
+  }
+
+  .friendList-thumb::-webkit-scrollbar-thumb {
+    background: #111;
+    border-radius: 100vh;
+  }
+
+  .friendList-thumbhover::-webkit-scrollbar-thumb:hover {
+    background: #4d4e57;
+  }
 }
