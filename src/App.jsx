@@ -65,7 +65,7 @@ function App() {
   const [ friendFilter, seFriendFilter ] = useState('online')
   
   return (
-    <main className=" h-svh min-w-[1020px] flex bg-secondary overflow-X-auto overflow-y-hidden mdlg:h-[calc(100svh-10px)] sm-max:!h-svh">
+    <main className=" h-svh min-w-[1020px] flex bg-secondary overflow-X-auto overflow-y-hidden mdlg:h-[calc(100svh-10px)]">
       <Sidebar friendsList={modifiedFriends}/>
       <section className="w-full flex flex-col">
           <Header friendFilter={friendFilter} seFriendFilter={seFriendFilter} />

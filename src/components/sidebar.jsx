@@ -59,7 +59,7 @@ export default function sidebar({friendsList}) {
           <input type="text" className="bg-primary w-full rounded text-sm pl-2 py-1 text-white placeholder:text-textGrey" placeholder="Find or start a conversation" />
         </div>
 
-        <div className=" sidebarHover pr-[10px] hover:pr-0 content h-[calc(100%-103px)] pl-2 pt-2 pb-2 overflow-y-auto scroll scrollbar scrollbar-track scrollbar-thumb scrollbar-thumbhover">
+        <div className=" sidebarHover pr-[10px] hover:pr-0 content h-[calc(100%-110px)] pl-2 pt-2 pb-2 overflow-y-auto scroll scrollbar scrollbar-track scrollbar-thumb scrollbar-thumbhover">
           <div className="buttons flex flex-col gap-0.5 mb-5">
             <Link to="/">
               <button className='flex items-center pl-[18px]  w-full hover:bg-secondHighlightGrey rounded-md h-[42px] mr-[1px]
@@ -108,7 +108,7 @@ export default function sidebar({friendsList}) {
           </div>
         </div>
 
-        <div className="userBar flex bg-primaryLight h-[50px] pl-1 px-2 py-1">
+        <div className="userBar flex bg-primaryLight min-h-[50px] pl-1 px-2 py-1">
           <div className="profile flex items-center gap-2 flex-1 hover:bg-highlightLightGrey rounded-[4px] pl-2">
             <div className="icon w-[32px] h-[32px] rounded-2xl overflow-hidden">
               <img src="https://cdn.discordapp.com/avatars/332771468276400129/18b4eb561bb3b6fbe8c06c8a4bcc9768.webp?size=40" alt="" />
