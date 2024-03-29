@@ -49,7 +49,7 @@ export default function friends({friendsList, friendFilter}) {
       <div className="friends">
         { friendFilter != 'pending' && <h3 className='text-xs uppercase font-semibold font-ggSansxl'>{friendFilter != 'pending' && friendFilter} — {shownFriends.length}</h3>}
         { friendFilter != 'pending' || friendFilter != 'blocked' ?
-          <div className=" max-h-[540px] friendList friendList-thumb friendList-thumbhover 
+          <div className=" max-h-[600px] friendList friendList-thumb friendList-thumbhover 
           friendList-track mt-4 pb-4 flex flex-col overflow-y-scroll">
           { shownFriends.map((friend, index) => 
               <div key={index} className={`w-full min-h-[58px] px-3 group flex justify-between rounded hover:bg-secondHighlightGrey cursor-pointer

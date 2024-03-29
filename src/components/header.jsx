@@ -6,7 +6,7 @@ export default function header({friendFilter, seFriendFilter}) {
   const [ options, setOptions ] = useState(['online', 'all', 'pending', 'blocked'])
 
   return (
-    <header className="shadow-borderShadow h-[50px] px-4 flex items-center justify-between text-textGrey">
+    <header className="shadow-borderShadow min-h-[50px] px-4 flex items-center justify-between text-textGrey">
       <div className="left flex">
         <div className="title flex gap-3 text-base items-center font-semibold pr-4 border-r-[1px] border-[#3f4147]"><Friend size={'1.55'}/> <span className='text-white'>Friends</span></div>
         <ul className='pl-4 flex gap-4 capitalize font-ggSansl'>
