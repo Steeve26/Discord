@@ -67,7 +67,7 @@
   }
 
   .mobile::-webkit-scrollbar {
-    width: 155px;
+    width: 10px;
     height: 10px;
   }
 
