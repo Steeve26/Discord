@@ -4,6 +4,7 @@ import { BsX } from "react-icons/bs";
 import { TbMessageCircle2Filled } from "react-icons/tb";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import Status from '../components/status';
+import wumpus from '../assets/wumpus.png'
 
 export default function friends({friendsList, friendFilter}) {
 
@@ -23,13 +24,29 @@ export default function friends({friendsList, friendFilter}) {
   const [ searchInput, setSearchInput] = useState('')
   
   useEffect(() => { 
+    filterShownData()
+    searchInput && setSearchInput()
+  }, [friendFilter])
+  
+  const filterShownData = () => {
     if(friendFilter == 'all')
       setShownFriends(friends) 
     else if(friendFilter == 'pending' || friendFilter == 'blocked')
       setShownFriends([])
     else if(friendFilter == 'online')
       setShownFriends(getActiveFriends(friends))
-  }, [friendFilter])
+  }
+
+  useEffect(() => {
+    if(searchInput && searchInput.trim() && searchInput.trim()) {
+      let searchedFriends = shownFriends.filter(jeles => jeles.name.toLowerCase().includes(searchInput.trim()))
+      setShownFriends(searchedFriends)
+    }
+    else {
+      filterShownData()
+      setSearchInput('')
+    }
+  }, [searchInput])
 
   return (
     <div className='pl-7 pt-4 font-ggSans text-textGrey'>
@@ -39,7 +56,7 @@ export default function friends({friendsList, friendFilter}) {
           <input type="text" placeholder='Search' value={searchInput} onChange={(e) => setSearchInput(e.target.value)} 
           className='pl-2 py-[5px] rounded-s bg-primary text-white w-full outline-none'/>
 
-        <button onClick={() => searchInput && setSearchInput('')} className={`bg-primary rounded-e flex items-center justify-center pr-2 ${searchInput ? 'cursor-pointer' : 'cursor-default'}`}>
+        <button onClick={() => searchInput && setSearchInput('')} className={`bg-primary rounded-e flex items-center justify-center px-2 ${searchInput ? 'cursor-pointer' : 'cursor-default'}`}>
           <IoSearch size={20} className={` text-iconGrey ${searchInput ? 'absolute invisible pointer-events-none' : 'visible pointer-events-auto'}`}/>
           <BsX size={28} className={` text-iconGrey hover:text-white ${searchInput ? 'visible pointer-events-auto' : 'absolute invisible pointer-events-none'}`}/>
         </button>
@@ -51,7 +68,7 @@ export default function friends({friendsList, friendFilter}) {
         { friendFilter != 'pending' || friendFilter != 'blocked' ?
           <div className=" max-h-[600px] friendList friendList-thumb friendList-thumbhover 
           friendList-track mt-4 pb-20 flex flex-col overflow-y-scroll">
-          { shownFriends.map((friend, index) => 
+          { shownFriends.length ? shownFriends.map((friend, index) => 
               <div key={index} className={`w-full min-h-[58px] px-3 group flex justify-between rounded hover:bg-secondHighlightGrey cursor-pointer
                 relative before:content-[''] before:absolute before:h-[1px] before:bg-[#3f4147] before:top-0 before:left-[50%] before:translate-x-[-50%] before:w-[99%] before:block`}>
                 <div className="left flex items-center gap-3">
@@ -75,7 +92,11 @@ export default function friends({friendsList, friendFilter}) {
                   </button>
                 </div>
               </div>
-            )
+            ) :
+            <div className=' h-64 mt-20 flex flex-col items-center justify-center'>
+              <img src={wumpus} width={'400em'} alt="sad wumpus" />
+              <p>There are no  {friendFilter === 'blocked' ? 'blocked people.' : 'pending friend requests.' } So here's Wumpus for now.</p>
+            </div>
           }
 
           </div> : ''

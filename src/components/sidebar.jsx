@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { FaDiscord, FaCompass, FaMicrophone, FaMicrophoneSlash } from "react-icons/fa";
 import { GoDownload, GoPlus } from "react-icons/go";
 import { TiPlus } from "react-icons/ti";
@@ -18,10 +19,11 @@ import micOff from '../assets/mic-off.mp3';
 import micOn from '../assets/mic-on.mp3';
 import headOff from '../assets/headphone-off.mp3';
 import headOn from '../assets/headphone-on.mp3';
-import { Link } from "react-router-dom";
+import Status from '../components/status'
 
 export default function sidebar({friendsList}) {
 
+  const location = useLocation()
   const [toggles, setToggles] = useState({mic: 'false', headphone: 'false'})
 
   const hOff = new Audio(headOff) 
@@ -35,10 +37,23 @@ export default function sidebar({friendsList}) {
       audio.volume = 0.4;
   });
 
+  const checkLocation = (path) => {
+    return location.pathname === path ? true : false
+  }
+
+  const [ friendsCopy, setFriendsCopy ] = useState(localStorage.getItem('friends') ? JSON.parse(localStorage.getItem('friends')) : [...friendsList])
+  localStorage.setItem('friends', JSON.stringify(friendsCopy))
+
+  const modifyFriends = (name) => {
+    const modifiedArray = friendsCopy.filter((friend, index) => friend.name !== name)
+    setFriendsCopy(modifiedArray)
+    localStorage.setItem('friends', JSON.stringify(modifiedArray))
+  } 
+
   return (
     <div className='h-full flex'>
       <div className="flex flex-col bg-primary text-white shadow-lg pt-2 w-[4.5rem] h-full">
-        <div className='mx-auto w-[80%] mb-3'><img src={logo} alt="discord logo"/></div>
+        <div className='mx-auto w-[80%] mb-3'><img src={logo} alt="discord logo" loading="lazy"/></div>
         <DiscordServer icon={<FaDiscord color='white' size={33}/>} first={true}/>
         <hr className='border-highlightLightGrey w-8 mx-auto my-2' />
         <DiscordServer icon={MidJourney} background={'bg-white'} iconType='image'/>
@@ -59,35 +74,35 @@ export default function sidebar({friendsList}) {
           <input type="text" className="bg-primary w-full rounded text-sm pl-2 py-1 text-white placeholder:text-textGrey" placeholder="Find or start a conversation" />
         </div>
 
-        <div className=" sidebarHover pr-[10px] hover:pr-0 content h-[calc(100%-110px)] pl-2 pt-2 pb-2 overflow-y-auto scroll scrollbar scrollbar-track scrollbar-thumb scrollbar-thumbhover">
+        <div className={`sidebarHover pr-[10px] ${friendsCopy.length && 'hover:pr-0'} content h-[calc(100%-110px)] pl-2 pt-2 pb-2 overflow-y-auto scroll scrollbar scrollbar-track scrollbar-thumb scrollbar-thumbhover`}>
           <div className="buttons flex flex-col gap-0.5 mb-5">
-            <Link to="/">
-              <button className='flex items-center pl-[18px]  w-full hover:bg-secondHighlightGrey rounded-md h-[42px] mr-[1px]
-              capitalize text-textGrey font-medium leading-5 hover:text-[#dbdee1] gap-4 active:brightness-110'>
+            <Link to="/friends">
+              <button className={`flex items-center pl-[21px] w-full ${checkLocation('/friends') && 'bg-secondHighlightGrey text-[#dbdee1]'} hover:bg-[#36373d] rounded-md h-[42px] mr-[1px]
+              capitalize text-textGrey font-medium leading-5 hover:text-[#dbdee1] gap-4 active:brightness-110`}>
                 <Friend size={'1.55'}/>
                 <p className='font-ggSansl'>friends</p>
               </button>
             </Link>
             
-            <Link to="/">
-              <button className='flex items-center pl-4  w-full hover:bg-secondHighlightGrey rounded-md h-[42px] mr-[1px]
-              capitalize text-textGrey font-medium leading-5 hover:text-[#dbdee1] gap-4 active:brightness-110'>
+            <Link to="/nitro">
+              <button className={`flex items-center pl-4 w-full ${checkLocation('/nitro') && 'bg-secondHighlightGrey text-[#dbdee1]'} hover:bg-[#36373d] rounded-md h-[42px] mr-[1px]
+              capitalize text-textGrey font-medium leading-5 hover:text-[#dbdee1] gap-4 active:brightness-110`}>
                 <Nitro size={'1.55'}/>
                 <p className='font-ggSansl'>nitro</p>
               </button>
             </Link>
             
-            <Link to="/">
-              <button className='flex items-center pl-4  w-full hover:bg-secondHighlightGrey rounded-md h-[42px] mr-[1px]
-              capitalize text-textGrey font-medium leading-5 hover:text-[#dbdee1] gap-4 active:brightness-110'>
+            <Link to="/messageRequests">
+              <button className={`flex items-center pl-4 w-full ${checkLocation('/messageRequests') && 'bg-secondHighlightGrey text-[#dbdee1]'} hover:bg-[#36373d] rounded-md h-[42px] mr-[1px]
+              capitalize text-textGrey font-medium leading-5 hover:text-[#dbdee1] gap-4 active:brightness-110`}>
                 <Messages size={'1.55'}/>
                 <p className='font-ggSansl'>message requests</p>
               </button>
             </Link>
             
-            <Link to="/">
-              <button className='flex items-center pl-4  w-full hover:bg-secondHighlightGrey rounded-md h-[42px] mr-[1px]
-              capitalize text-textGrey font-medium leading-5 hover:text-[#dbdee1] gap-4 active:brightness-110'>
+            <Link to="/shop">
+              <button className={`flex items-center pl-4 w-full ${checkLocation('/shop') && 'bg-secondHighlightGrey text-[#dbdee1]'} hover:bg-[#36373d] rounded-md h-[42px] mr-[1px]
+              capitalize text-textGrey font-medium leading-5 hover:text-[#dbdee1] gap-4 active:brightness-110`}>
                 <Shop size={'1.55'}/>
                 <p className='font-ggSansl'>shop</p>
               </button>
@@ -100,21 +115,27 @@ export default function sidebar({friendsList}) {
             </h1>
 
             <div className="friends mt-4">
-              {friendsList.map((friend, index) => {
-                return <Profile key={index} icon={friend.icon} name={friend.name} status={friend.status}/>
+              {friendsCopy.map((friend, index) => {
+                return <Profile key={index} icon={friend.icon} name={friend.name} status={friend.status} position={'modified'} del={modifyFriends}/>
               })}
+
+              {!friendsCopy.length &&
+                <h3 className="text-balance text-center text-textGrey px-2 mt-4">You are going to die from loneliness bro</h3>
+              }
             </div>
 
           </div>
         </div>
 
-        <div className="userBar flex bg-primaryLight min-h-[50px] pl-1 px-2 py-1">
-          <div className="profile flex items-center gap-2 flex-1 hover:bg-highlightLightGrey rounded-[4px] pl-2">
-            <div className="icon w-[32px] h-[32px] rounded-2xl overflow-hidden">
-              <img src="https://cdn.discordapp.com/avatars/332771468276400129/18b4eb561bb3b6fbe8c06c8a4bcc9768.webp?size=40" alt="" />
+        <div className="userBar flex bg-primaryLight min-h-[50px] pl-1 px-2 py-2">
+          <div className="profile flex items-center gap-2 flex-1 hover:bg-highlightLightGrey rounded-[4px] py-1 pl-2">
+            <div className="icon w-[32px] h-[32px] relative">
+              <img src="https://cdn.discordapp.com/avatars/332771468276400129/18b4eb561bb3b6fbe8c06c8a4bcc9768.webp?size=40" alt="user ico"
+                className="rounded-2xl " />
+              <Status status={'online'}/>
             </div>
 
-            <div className="text-textGrey font-ggSans py-2">
+            <div className="text-textGrey font-ggSans">
               <p className="font-medium text-sm text-white">Estif</p>
               <p className="text-xs">Online</p>
             </div>

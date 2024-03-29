@@ -14,7 +14,7 @@ export default function header({friendFilter, seFriendFilter}) {
               <li key={index}>{console.log('test', friendFilter, option)}<button onClick={() => seFriendFilter(option)}
                className={`capitalize px-2 rounded font-medium ${friendFilter == option ? 'bg-secondHighlightGrey  text-white': 'text-textGrey'} hover:bg-secondHighlightGrey text-base hover:text-[#dbdee1]`}>{option}</button></li>
            )}
-          <li><button className='capitalize px-2 rounded font-medium bg-[#248046] text-white'>add friend</button></li>
+          <li><button className='capitalize duration-200 px-2 rounded font-medium bg-[#248046] border-2 border-transparent hover:border-[#248046] hover:bg-transparent text-white'>add friend</button></li>
         </ul>
       </div>
       
