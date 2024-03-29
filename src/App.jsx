@@ -6,6 +6,7 @@ import Routes from "./routes/routes"
 import { useState } from "react"
 
 function App() {
+  const location = useLocation()
   const friends = [
     {name: 'Morpheus', icon: 'https://cdn.discordapp.com/avatars/195233251080667136/2b656a7cd453d04a9b89fa893a15b8a6.webp?size=40', status: 'offline'}, 
     {name: 'Scorpion', icon: 'https://cdn.discordapp.com/avatars/293902131600031744/fbf35f075e835c1c0f5bcab7368cbce2.webp?size=40', status: 'offline'}, 
@@ -64,14 +65,28 @@ function App() {
   const [ friendFilter, seFriendFilter ] = useState('online')
   
   return (
-    <main className=" h-svh min-w-[860px] flex bg-secondary overflow-X-auto overflow-y-hidden mdlg:h-[calc(100svh-10px)]">
+    <main className=" h-svh min-w-[1020px] flex bg-secondary overflow-X-auto overflow-y-hidden mdlg:h-[calc(100svh-10px)]">
       <Sidebar friendsList={modifiedFriends}/>
-      <section className="flex flex-col w-full">
-        <Header friendFilter={friendFilter} seFriendFilter={seFriendFilter} />
-        
-        <div className="mainContent flex-grow">
-          <Routes friendsList={modifiedFriends} friendFilter={friendFilter}/>
+      <section className="w-full flex flex-col">
+          <Header friendFilter={friendFilter} seFriendFilter={seFriendFilter} />
+        <div className="bottomSection flex flex-grow">
+          
+          <div className="mainContent flex-grow">
+            <Routes friendsList={modifiedFriends} friendFilter={friendFilter}/>
+          </div>
+
+          { location.pathname === '/friends' && 
+            <div className="menuRight max-w-[350px] flex-grow border-l-[1px] border-[#4e50587a] text-textOffWhite font-ggSans pt-5 px-3">
+              <h2 className=" font-ggSansxl text-xl mb-5">Active Now</h2>
+
+              <div className="message p-4">
+                <p className=" text-center text-base font-ggSansl mb-2 font-semibold text-textOffWhite">It's quiet for now... </p>
+                <p className=" text-center text-sm text-balance text-iconLightGrey">When a friend starts an activity—like playing a game or hanging out on voice—we'll show it here!</p>
+              </div>
+            </div>
+          }
         </div>
+
       </section>
     </main>
   )

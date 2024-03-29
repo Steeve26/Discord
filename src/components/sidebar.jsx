@@ -68,6 +68,7 @@ export default function sidebar({friendsList}) {
                 <p className='font-ggSansl'>friends</p>
               </button>
             </Link>
+            
             <Link to="/">
               <button className='flex items-center pl-4  w-full hover:bg-secondHighlightGrey rounded-md h-[42px] mr-[1px]
               capitalize text-textGrey font-medium leading-5 hover:text-[#dbdee1] gap-4 active:brightness-110'>
@@ -75,6 +76,7 @@ export default function sidebar({friendsList}) {
                 <p className='font-ggSansl'>nitro</p>
               </button>
             </Link>
+            
             <Link to="/">
               <button className='flex items-center pl-4  w-full hover:bg-secondHighlightGrey rounded-md h-[42px] mr-[1px]
               capitalize text-textGrey font-medium leading-5 hover:text-[#dbdee1] gap-4 active:brightness-110'>
@@ -82,6 +84,7 @@ export default function sidebar({friendsList}) {
                 <p className='font-ggSansl'>message requests</p>
               </button>
             </Link>
+            
             <Link to="/">
               <button className='flex items-center pl-4  w-full hover:bg-secondHighlightGrey rounded-md h-[42px] mr-[1px]
               capitalize text-textGrey font-medium leading-5 hover:text-[#dbdee1] gap-4 active:brightness-110'>
