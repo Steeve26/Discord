@@ -35,6 +35,9 @@ export default {
       },
       boxShadow: {
         borderShadow: '0 1px 0 hsl( 0 calc( 1 * 0%) 0.8% / 0.2), 0 1.5px 0 hsl( 240 calc( 1 * 7.7%) 2.5% / 0.05), 0 2px 0 hsl( 0 calc( 1 * 0%) 0.8% / 0.05)',
+      },
+      screens: {
+        mdlg: {'max': '860px'}
       }
     }
   },

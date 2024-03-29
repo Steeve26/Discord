@@ -65,4 +65,22 @@
   .friendList-thumbhover::-webkit-scrollbar-thumb:hover {
     background: #4d4e57;
   }
+
+  .mobile::-webkit-scrollbar {
+    width: 155px;
+    height: 10px;
+  }
+
+  .mobile-track::-webkit-scrollbar-track {
+    background: #313338;
+  }
+
+  .mobile-thumb::-webkit-scrollbar-thumb {
+    background: #111;
+    border-radius: 100vh;
+  }
+
+  .mobile-thumbhover::-webkit-scrollbar-thumb:hover {
+    background: #4d4e57;
+  }
 }
