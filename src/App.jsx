@@ -37,7 +37,7 @@ function App() {
   ]
 
   const servers = [
-    {name: 'default', icon: <FaDiscord color='white' size={33}/>, iconType: '', background: '', notifications: '', hoverColor: 'bg-discordBlue', type: ''},
+    {name: 'default', icon: <FaDiscord color='white' size={33}/>, iconType: '', background: '', notifications: '', hoverColor: '!bg-discordBlue', type: ''},
     {name: 'midjourney', icon: midJourney, iconType: 'image', background: 'bg-white', notifications: '', hoverColor: '', type: ''},
     {name: 'fortnite', icon: 'https://cdn.discordapp.com/icons/322850917248663552/0d76b3a60f4987ca91d0456a6905bdf8.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
     {name: 'dark reef', icon: 'https://cdn.discordapp.com/icons/303457917955342357/0cefdbe4925567dde19dfc5498af948c.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
