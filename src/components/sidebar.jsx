@@ -38,6 +38,8 @@ export default function sidebar({friendsList, servers, selectedServer, setSelect
     return location.pathname === path ? true : false
   }
 
+  console.log('loc', checkLocation('/friends'));
+
   const [ friendsCopy, setFriendsCopy ] = useState(localStorage.getItem('friends') ? JSON.parse(localStorage.getItem('friends')) : [...friendsList])
   localStorage.setItem('friends', JSON.stringify(friendsCopy))
 
@@ -75,32 +77,32 @@ export default function sidebar({friendsList, servers, selectedServer, setSelect
             <div className={`sidebarHover pr-[9.5px] ${friendsCopy.length && 'hover:pr-0'} content h-[calc(100%-103px)] pl-2 pt-2 pb-2 overflow-y-auto scroll scrollbar scrollbar-track scrollbar-thumb scrollbar-thumbhover`}>
               <div className="buttons flex flex-col gap-0.5 mb-5">
                 <Link to="/friends">
-                  <button className={`flex items-center pl-[21px] w-full ${checkLocation('/friends') && 'bg-secondHighlightGrey text-[#dbdee1]'} hover:bg-[#36373d] rounded-md h-[42px] mr-[1px]
-                  capitalize text-textGrey font-medium leading-5 ${location.pathname == '/friends' && 'text-[#dbeed1]'} hover:text-[#dbdee1] gap-4 active:brightness-110`}>
+                  <button className={`flex items-center pl-[21px] w-full ${checkLocation('/friends') && 'bg-secondHighlightGrey text-textOffWhite'} hover:bg-[#36373d] rounded-md h-[42px] mr-[1px]
+                  capitalize text-textGrey font-medium leading-5 hover:text-[#dbdee1] gap-4 active:brightness-110`}>
                     <Friend size={'1.55'}/>
                     <p className='font-ggSansl'>friends</p>
                   </button>
                 </Link>
                 
                 <Link to="/nitro">
-                  <button className={`flex items-center pl-4 w-full ${checkLocation('/nitro') && 'bg-secondHighlightGrey text-[#dbdee1]'} hover:bg-[#36373d] rounded-md h-[42px] mr-[1px]
-                  capitalize text-textGrey font-medium leading-5 ${location.pathname == '/nitro' && 'text-[#dbeed1]'} hover:text-[#dbdee1] gap-4 active:brightness-110`}>
+                  <button className={`flex items-center pl-4 w-full ${checkLocation('/nitro') && 'bg-secondHighlightGrey text-textOffWhite'} hover:bg-[#36373d] rounded-md h-[42px] mr-[1px]
+                  capitalize text-textGrey font-medium leading-5 hover:text-[#dbdee1] gap-4 active:brightness-110`}>
                     <Nitro size={'1.55'}/>
                     <p className='font-ggSansl'>nitro</p>
                   </button>
                 </Link>
                 
                 <Link to="/messageRequests">
-                  <button className={`flex items-center pl-4 w-full ${checkLocation('/messageRequests') && 'bg-secondHighlightGrey text-[#dbdee1]'} hover:bg-[#36373d] rounded-md h-[42px] mr-[1px]
-                  capitalize text-textGrey font-medium leading-5 ${location.pathname == '/messageRequests' && 'text-[#dbeed1]'} hover:text-[#dbdee1] gap-4 active:brightness-110`}>
+                  <button className={`flex items-center pl-4 w-full ${checkLocation('/messageRequests') && 'bg-secondHighlightGrey text-textOffWhite'} hover:bg-[#36373d] rounded-md h-[42px] mr-[1px]
+                  capitalize text-textGrey font-medium leading-5 hover:text-[#dbdee1] gap-4 active:brightness-110`}>
                     <Messages size={'1.55'}/>
                     <p className='font-ggSansl'>message requests</p>
                   </button>
                 </Link>
                 
                 <Link to="/shop">
-                  <button className={`flex items-center pl-4 w-full ${checkLocation('/shop') && 'bg-secondHighlightGrey text-[#dbdee1]'} hover:bg-[#36373d] rounded-md h-[42px] mr-[1px]
-                  capitalize text-textGrey font-medium leading-5 ${location.pathname == '/shop' && 'text-[#dbeed1]'} hover:text-[#dbdee1] gap-4 active:brightness-110`}>
+                  <button className={`flex items-center pl-4 w-full ${checkLocation('/shop') && 'bg-secondHighlightGrey text-textOffWhite'} hover:bg-[#36373d] rounded-md h-[42px] mr-[1px]
+                  capitalize text-textGrey font-medium leading-5 hover:text-[#dbdee1] gap-4 active:brightness-110`}>
                     <Shop size={'1.55'}/>
                     <p className='font-ggSansl'>shop</p>
                   </button>

@@ -2,7 +2,7 @@ import Sidebar from "./components/sidebar"
 import { useLocation } from "react-router-dom"
 import Header from "./components/header"
 import Routes from "./routes/routes"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import midJourney from './assets/midjourney.svg'
 import react from './assets/react-16-svgrepo-com.svg'
 import { FaCompass, FaDiscord } from "react-icons/fa";
@@ -37,19 +37,21 @@ function App() {
   ]
 
   const servers = [
-    {name: 'default', icon: <FaDiscord color='white' size={33}/>, iconType: '', background: '', notifications: '', hoverColor: 'discordBlue', type: ''},
+    {name: 'default', icon: <FaDiscord color='white' size={33}/>, iconType: '', background: '', notifications: '', hoverColor: 'bg-discordBlue', type: ''},
     {name: 'midjourney', icon: midJourney, iconType: 'image', background: 'bg-white', notifications: '', hoverColor: '', type: ''},
-    {name: 'dark reef', icon: 'https://cdn.discordapp.com/icons/322850917248663552/0d76b3a60f4987ca91d0456a6905bdf8.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
-    {name: 'minecraft', icon: 'https://cdn.discordapp.com/icons/303457917955342357/0cefdbe4925567dde19dfc5498af948c.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
-    {name: 'lofi girl', icon: 'https://cdn.discordapp.com/icons/302094807046684672/a_916131f4d4e8c6f6eed9f590a1982725.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
-    {name: 'voltaic', icon: 'https://cdn.discordapp.com/icons/707230275175841915/36c8c90fb08f6c097d897b7a0fa15312.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
+    {name: 'fortnite', icon: 'https://cdn.discordapp.com/icons/322850917248663552/0d76b3a60f4987ca91d0456a6905bdf8.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
+    {name: 'dark reef', icon: 'https://cdn.discordapp.com/icons/303457917955342357/0cefdbe4925567dde19dfc5498af948c.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
+    {name: 'minecraft', icon: 'https://cdn.discordapp.com/icons/302094807046684672/a_916131f4d4e8c6f6eed9f590a1982725.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
+    {name: 'lofi girl', icon: 'https://cdn.discordapp.com/icons/707230275175841915/36c8c90fb08f6c097d897b7a0fa15312.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
     {name: 'next.js', icon: 'https://cdn.discordapp.com/icons/752553802359505017/065ee8ece89b91115525fef8ae2c15cb.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
+    {name: 'voltaic', icon: 'https://cdn.discordapp.com/icons/153919886471593984/41005b5c251283f2f53321794c6e4078.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
     {name: 'react.js', icon: react, iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
-    {name: 'add server', icon: <TiPlus size={28}/>, iconType: '', background: '', notifications: '', hoverColor: 'brightGreen', type: 'action'},
-    {name: 'explore', icon: <FaCompass size={25}/>, iconType: '', background: '', notifications: '', hoverColor: 'brightGreen', type: 'action'},
-    {name: 'download update', icon: <GoDownload size={25}/>, iconType: '', background: '', notifications: '', hoverColor: 'brightGreen', type: 'action'},
+    {name: 'add server', icon: <TiPlus size={28}/>, iconType: '', background: '', notifications: '', hoverColor: 'bg-brightGreen', type: 'action'},
+    {name: 'explore', icon: <FaCompass size={25}/>, iconType: '', background: '', notifications: '', hoverColor: 'bg-brightGreen', type: 'action'},
+    {name: 'download update', icon: <GoDownload size={25}/>, iconType: '', background: '', notifications: '', hoverColor: 'bg-brightGreen', type: 'action'},
   ]
 
+  var shele = 1
   const getFriends = (friends) => {
     const randomLimit = Math.floor(Math.random() * 12)
 
@@ -76,12 +78,20 @@ function App() {
       }
     });
 
+    console.log('perf test')
+    shele += 1
+    console.log('perf', shele);
+    console.log('perf', shele);
     return modifiedFriends
   }
 
-  const [ modifiedFriends, setModifiedFriends ] = useState(getFriends(friends))
+  const [ modifiedFriends, setModifiedFriends ] = useState()
   const [ friendFilter, seFriendFilter ] = useState('online')
   const [ selectedServer, setSelectedServer ] = useState('default')
+
+  useEffect(() => {
+    setModifiedFriends(getFriends(friends))
+  }, [])
   
   return (
     <main className=" h-svh min-w-[1020px] flex bg-secondary overflow-X-auto overflow-y-hidden ">

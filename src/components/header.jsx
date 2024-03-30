@@ -11,7 +11,7 @@ export default function header({friendFilter, seFriendFilter, selectedServer}) {
 
   return (
     <header className="shadow-borderShadow min-h-[50px] px-4 flex items-center justify-between text-textGrey">
-      { paths.includes(location.pathname) &&
+      { location.pathname === '/friends' &&
         <div className="left flex">
           <div className="title flex gap-3 text-base items-center font-semibold pr-4 border-r-[1px] border-[#3f4147]">
             <Friend size={'1.55'}/> <span className='text-white'>Friends</span>
@@ -28,7 +28,7 @@ export default function header({friendFilter, seFriendFilter, selectedServer}) {
       }
       
       <div className="right text-iconLightGrey flex gap-5 ml-auto">
-      { paths.includes(location.pathname) &&
+      { location.pathname === '/friends' &&
         <button className='hover:text-[#dbdee1] pr-5 border-r-[1px] border-[#3f4147]'><AddChat/></button>
       }
         <button className='hover:text-[#dbdee1]'><Inbox/></button>
