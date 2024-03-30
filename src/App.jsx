@@ -1,9 +1,13 @@
 import Sidebar from "./components/sidebar"
-// import Routes from "./routes/routes"
 import { useLocation } from "react-router-dom"
 import Header from "./components/header"
 import Routes from "./routes/routes"
 import { useState } from "react"
+import midJourney from './assets/midjourney.svg'
+import react from './assets/react-16-svgrepo-com.svg'
+import { FaCompass, FaDiscord } from "react-icons/fa";
+import { GoDownload } from "react-icons/go";
+import { TiPlus } from "react-icons/ti";
 
 function App() {
   const location = useLocation()
@@ -30,6 +34,20 @@ function App() {
     {name: 'BristleB', icon: 'https://cdn.discordapp.com/avatars/457844649831432192/5c7bb4e8c96ecb89af8f45bff26f206b.webp?size=40', status: 'offline'},
     {name: 'mikes0ap', icon: 'https://cdn.discordapp.com/avatars/586649116516417537/490f60ba50f5b2e98b3b685a65a2cbd6.webp?size=40', status: 'offline'}, 
     {name: 'rogueWanted47', icon: 'https://cdn.discordapp.com/avatars/548543803133394955/cac5e802a04c203480e5f754130883ab.webp?size=40', status: 'offline'}
+  ]
+
+  const servers = [
+    {name: 'default', icon: <FaDiscord color='white' size={33}/>, iconType: '', background: '', notifications: '', hoverColor: 'discordBlue', type: ''},
+    {name: 'midjourney', icon: midJourney, iconType: 'image', background: 'bg-white', notifications: '', hoverColor: '', type: ''},
+    {name: 'dark reef', icon: 'https://cdn.discordapp.com/icons/322850917248663552/0d76b3a60f4987ca91d0456a6905bdf8.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
+    {name: 'minecraft', icon: 'https://cdn.discordapp.com/icons/303457917955342357/0cefdbe4925567dde19dfc5498af948c.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
+    {name: 'lofi girl', icon: 'https://cdn.discordapp.com/icons/302094807046684672/a_916131f4d4e8c6f6eed9f590a1982725.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
+    {name: 'voltaic', icon: 'https://cdn.discordapp.com/icons/707230275175841915/36c8c90fb08f6c097d897b7a0fa15312.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
+    {name: 'next.js', icon: 'https://cdn.discordapp.com/icons/752553802359505017/065ee8ece89b91115525fef8ae2c15cb.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
+    {name: 'react.js', icon: react, iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
+    {name: 'add server', icon: <TiPlus size={28}/>, iconType: '', background: '', notifications: '', hoverColor: 'brightGreen', type: 'action'},
+    {name: 'explore', icon: <FaCompass size={25}/>, iconType: '', background: '', notifications: '', hoverColor: 'brightGreen', type: 'action'},
+    {name: 'download update', icon: <GoDownload size={25}/>, iconType: '', background: '', notifications: '', hoverColor: 'brightGreen', type: 'action'},
   ]
 
   const getFriends = (friends) => {
@@ -63,16 +81,17 @@ function App() {
 
   const [ modifiedFriends, setModifiedFriends ] = useState(getFriends(friends))
   const [ friendFilter, seFriendFilter ] = useState('online')
+  const [ selectedServer, setSelectedServer ] = useState('default')
   
   return (
     <main className=" h-svh min-w-[1020px] flex bg-secondary overflow-X-auto overflow-y-hidden ">
-      <Sidebar friendsList={modifiedFriends}/>
+      <Sidebar friendsList={modifiedFriends} servers={servers} selectedServer={selectedServer} setSelectedServer={setSelectedServer}/>
       <section className="w-full flex flex-col">
-          <Header friendFilter={friendFilter} seFriendFilter={seFriendFilter} />
+          <Header friendFilter={friendFilter} seFriendFilter={seFriendFilter} servers={servers} selectedServer={selectedServer}/>
         <div className="bottomSection flex flex-grow">
           
           <div className="mainContent w-full">
-            <Routes friendsList={modifiedFriends} friendFilter={friendFilter}/>
+            <Routes friendsList={modifiedFriends} friendFilter={friendFilter} servers={servers} selectedServer={selectedServer}/>
           </div>
 
           { location.pathname === '/friends' && 
