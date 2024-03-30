@@ -52,21 +52,25 @@ export default function sidebar({friendsList}) {
 
   return (
     <div className='h-full flex'>
-      <div className="flex flex-col bg-primary text-white shadow-lg pt-2 w-[4.5rem] h-full">
-        <div className='mx-auto w-[80%] mb-3'><img src={logo} alt="discord logo" loading="lazy"/></div>
-        <DiscordServer icon={<FaDiscord color='white' size={33}/>} first={true}/>
-        <hr className='border-highlightLightGrey w-8 mx-auto my-2' />
-        <DiscordServer icon={MidJourney} background={'bg-white'} iconType='image'/>
-        <DiscordServer icon={"https://cdn.discordapp.com/icons/322850917248663552/0d76b3a60f4987ca91d0456a6905bdf8.webp?size=128"}iconType={'image'}/>
-        <DiscordServer icon={"https://cdn.discordapp.com/icons/303457917955342357/0cefdbe4925567dde19dfc5498af948c.webp?size=128"} iconType={'image'}/>
-        <DiscordServer icon={"https://cdn.discordapp.com/icons/302094807046684672/a_916131f4d4e8c6f6eed9f590a1982725.webp?size=128"} iconType={'image'}/>
-        <DiscordServer icon={"https://cdn.discordapp.com/icons/707230275175841915/36c8c90fb08f6c097d897b7a0fa15312.webp?size=128"} iconType={'image'}/>
-        <DiscordServer icon={"https://cdn.discordapp.com/icons/153919886471593984/41005b5c251283f2f53321794c6e4078.webp?size=128"} iconType={'image'}/>
-        <DiscordServer icon={"https://cdn.discordapp.com/icons/752553802359505017/065ee8ece89b91115525fef8ae2c15cb.webp?size=128"} iconType={'image'}/>
-        <DiscordServer icon={react} iconType={'image'}/>
-        <DiscordServer icon={<TiPlus size={28}/>} type='actions'/>
-        <DiscordServer icon={<FaCompass size={25}/>} type='actions'/>
-        <DiscordServer icon={<GoDownload size={25}/>} type='actions'/>
+      <div className="DiscordServers bg-primary pb-3">
+        <img src={logo} width={'55px'} alt="discord logo" loading="lazy" className="mx-auto mt-3"/>
+        <div className="flex flex-col gap-2 mt-4 h-[calc(100vh-2.5rem)] pb-3 overflow-y-scroll serverScrollbar">
+          <div>
+            <DiscordServer icon={<FaDiscord color='white' size={33}/>} first={true}/>
+            <hr className='border-highlightLightGrey w-[50%] mx-auto my-2' />
+          </div>
+          <DiscordServer icon={MidJourney} background={'bg-white'} iconType='image'/>
+          <DiscordServer icon={"https://cdn.discordapp.com/icons/322850917248663552/0d76b3a60f4987ca91d0456a6905bdf8.webp?size=128"}iconType={'image'}/>
+          <DiscordServer icon={"https://cdn.discordapp.com/icons/303457917955342357/0cefdbe4925567dde19dfc5498af948c.webp?size=128"} iconType={'image'}/>
+          <DiscordServer icon={"https://cdn.discordapp.com/icons/302094807046684672/a_916131f4d4e8c6f6eed9f590a1982725.webp?size=128"} iconType={'image'}/>
+          <DiscordServer icon={"https://cdn.discordapp.com/icons/707230275175841915/36c8c90fb08f6c097d897b7a0fa15312.webp?size=128"} iconType={'image'}/>
+          <DiscordServer icon={"https://cdn.discordapp.com/icons/153919886471593984/41005b5c251283f2f53321794c6e4078.webp?size=128"} iconType={'image'}/>
+          <DiscordServer icon={"https://cdn.discordapp.com/icons/752553802359505017/065ee8ece89b91115525fef8ae2c15cb.webp?size=128"} iconType={'image'}/>
+          <DiscordServer icon={react} iconType={'image'}/>
+          <DiscordServer icon={<TiPlus size={28}/>} type='actions'/>
+          <DiscordServer icon={<FaCompass size={25}/>} type='actions'/>
+          <DiscordServer icon={<GoDownload size={25}/>} type='actions'/>
+        </div>
       </div>
 
       <div className="side-sidebar w-60 bg-secondaryDark">
@@ -74,7 +78,7 @@ export default function sidebar({friendsList}) {
           <input type="text" className="bg-primary w-full rounded text-sm pl-2 py-1 text-white placeholder:text-textGrey" placeholder="Find or start a conversation" />
         </div>
 
-        <div className={`sidebarHover pr-[10px] ${friendsCopy.length && 'hover:pr-0'} content h-[calc(100%-110px)] pl-2 pt-2 pb-2 overflow-y-auto scroll scrollbar scrollbar-track scrollbar-thumb scrollbar-thumbhover`}>
+        <div className={`sidebarHover pr-[9.5px] ${friendsCopy.length && 'hover:pr-0'} content h-[calc(100%-110px)] pl-2 pt-2 pb-2 overflow-y-auto scroll scrollbar scrollbar-track scrollbar-thumb scrollbar-thumbhover`}>
           <div className="buttons flex flex-col gap-0.5 mb-5">
             <Link to="/friends">
               <button className={`flex items-center pl-[21px] w-full ${checkLocation('/friends') && 'bg-secondHighlightGrey text-[#dbdee1]'} hover:bg-[#36373d] rounded-md h-[42px] mr-[1px]

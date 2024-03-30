@@ -57,6 +57,10 @@
     background: transparent;
   }
 
+  .serverScrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
   .friendList-thumb::-webkit-scrollbar-thumb {
     background: #111;
     border-radius: 100vh;

@@ -5,11 +5,11 @@ import { TbMessageCircle2Filled } from "react-icons/tb";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import Status from '../components/status';
 import wumpus from '../assets/wumpus.png'
+import sadWumpus from '../assets/sad-wumpus.png'
 
 export default function friends({friendsList, friendFilter}) {
 
   const [ friends, setFriends ] = useState(friendsList)
-  console.log(friendsList);
 
   const getActiveFriends = (friends) => {
     return friends.reduce((activeFriends, friend) => {
@@ -25,7 +25,7 @@ export default function friends({friendsList, friendFilter}) {
   
   useEffect(() => { 
     filterShownData()
-    searchInput && setSearchInput()
+    searchInput && setSearchInput('')
   }, [friendFilter])
   
   const filterShownData = () => {
@@ -39,17 +39,16 @@ export default function friends({friendsList, friendFilter}) {
 
   useEffect(() => {
     if(searchInput && searchInput.trim() && searchInput.trim()) {
-      let searchedFriends = shownFriends.filter(jeles => jeles.name.toLowerCase().includes(searchInput.trim()))
+      let searchedFriends = shownFriends.filter(jeles => jeles.name.toLowerCase().includes(searchInput.trim().toLowerCase()))
       setShownFriends(searchedFriends)
     }
     else {
       filterShownData()
-      setSearchInput('')
     }
   }, [searchInput])
 
   return (
-    <div className='pl-7 pt-4 font-ggSans text-textGrey'>
+    <div className='pl-7 pt-4 h-[calc(100svh-50px)] font-ggSans text-textGrey'>
 
     { friendFilter != 'pending' && 
       <div className="searchBar flex mb-6 pr-7">
@@ -63,11 +62,11 @@ export default function friends({friendsList, friendFilter}) {
       </div>
     }
 
-      <div className="friends">
+      <div className="friends h-full pb-3">
         { friendFilter != 'pending' && <h3 className='text-xs uppercase font-semibold font-ggSansxl'>{friendFilter != 'pending' && friendFilter} — {shownFriends.length}</h3>}
         { friendFilter != 'pending' || friendFilter != 'blocked' ?
-          <div className=" max-h-[600px] friendList friendList-thumb friendList-thumbhover 
-          friendList-track mt-4 pb-20 flex flex-col overflow-y-scroll">
+          <div className=" max-h-[calc(100svh-9.75rem)] pb-4 friendList friendList-thumb friendList-thumbhover 
+          friendList-track mt-4 flex flex-col overflow-y-scroll">
           { shownFriends.length ? shownFriends.map((friend, index) => 
               <div key={index} className={`w-full min-h-[58px] px-3 group flex justify-between rounded hover:bg-secondHighlightGrey cursor-pointer
                 relative before:content-[''] before:absolute before:h-[1px] before:bg-[#3f4147] before:top-0 before:left-[50%] before:translate-x-[-50%] before:w-[99%] before:block`}>
@@ -84,18 +83,18 @@ export default function friends({friendsList, friendFilter}) {
                 </div>
 
                 <div className="right flex items-center justify-center gap-2">
-                  <button className=' h-fit bg-secondaryDark rounded-3xl flex items-center justify-center p-2 group-hover:bg-primary'>
-                    <TbMessageCircle2Filled className=' hover:text-[#d9dcdf]' size={20}/>
+                  <button className='h-fit bg-secondaryDark rounded-3xl flex items-center justify-center p-2 group-hover:bg-primary hover:text-[#d9dcdf]'>
+                    <TbMessageCircle2Filled size={20}/>
                   </button>
-                  <button className=' h-fit bg-secondaryDark rounded-3xl flex items-center justify-center p-2 group-hover:bg-primary'>
-                    <HiOutlineDotsVertical className=' hover:text-[#d9dcdf]' size={20}/>
+                  <button className='h-fit bg-secondaryDark rounded-3xl flex items-center justify-center p-2 group-hover:bg-primary hover:text-[#d9dcdf]'>
+                    <HiOutlineDotsVertical size={20}/>
                   </button>
                 </div>
               </div>
             ) :
             <div className=' h-64 mt-20 flex flex-col items-center justify-center'>
-              <img src={wumpus} width={'400em'} alt="sad wumpus" />
-              <p>There are no  {friendFilter === 'blocked' ? 'blocked people.' : 'pending friend requests.' } So here's Wumpus for now.</p>
+              <img src={(friendFilter === 'online' && !searchInput.trim()) ? sadWumpus : wumpus} width={'400em'} alt="sad wumpus" />
+              <p className='mt-5'>{friendFilter === 'online' ? 'You have' : 'There are'} no {friendFilter === 'blocked' ? 'blocked people.' : friendFilter === 'online' ? searchInput.trim() ? 'friends by that name.' : 'friends online.' : 'pending friend requests.' } So {(friendFilter === 'online' && !searchInput.trim()) ? 'Wumpus is sad and pities you.' : "here's Wumpus for now."}</p>
             </div>
           }
 

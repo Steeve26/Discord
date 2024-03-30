@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function discordServer({icon, first, type, iconType, background, rounded}) {
   return (
-    <div className={`flex justify-center px-1 cursor-pointer min-h-3 ${!first && 'mb-2'}`}>
+    <div className={`flex justify-center cursor-pointer px-3`}>
       <div className={`${iconType !== 'image' ? 'px-2 py-2' : 'rounded-none'} 
       size-[47px] rounded-3xl overflow-hidden  flex hover:rounded-2xl items-center duration-200 justify-center text-brightGreen
       ${(first || type == 'actions') && 'bg-highlightLightGrey hover:rounded-2xl'} ${first ? 'hover:bg-discordBlue' : 

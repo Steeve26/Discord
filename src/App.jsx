@@ -71,7 +71,7 @@ function App() {
           <Header friendFilter={friendFilter} seFriendFilter={seFriendFilter} />
         <div className="bottomSection flex flex-grow">
           
-          <div className="mainContent flex-grow">
+          <div className="mainContent w-full">
             <Routes friendsList={modifiedFriends} friendFilter={friendFilter}/>
           </div>
 
