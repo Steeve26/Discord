@@ -37,7 +37,7 @@ function App() {
   ]
 
   const servers = [
-    {name: 'default', icon: <FaDiscord color='white' size={33}/>, iconType: '', background: '', notifications: '', hoverColor: '!bg-discordBlue', type: ''},
+    {name: 'default', icon: <FaDiscord color='white' size={33}/>, iconType: '', background: '', notifications: '', hoverColor: 'discordBlue', type: ''},
     {name: 'midjourney', icon: midJourney, iconType: 'image', background: 'bg-white', notifications: '', hoverColor: '', type: ''},
     {name: 'fortnite', icon: 'https://cdn.discordapp.com/icons/322850917248663552/0d76b3a60f4987ca91d0456a6905bdf8.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
     {name: 'dark reef', icon: 'https://cdn.discordapp.com/icons/303457917955342357/0cefdbe4925567dde19dfc5498af948c.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
@@ -46,9 +46,9 @@ function App() {
     {name: 'next.js', icon: 'https://cdn.discordapp.com/icons/752553802359505017/065ee8ece89b91115525fef8ae2c15cb.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
     {name: 'voltaic', icon: 'https://cdn.discordapp.com/icons/153919886471593984/41005b5c251283f2f53321794c6e4078.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
     {name: 'react.js', icon: react, iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
-    {name: 'add server', icon: <TiPlus size={28}/>, iconType: '', background: '', notifications: '', hoverColor: 'bg-brightGreen', type: 'action'},
-    {name: 'explore', icon: <FaCompass size={25}/>, iconType: '', background: '', notifications: '', hoverColor: 'bg-brightGreen', type: 'action'},
-    {name: 'download update', icon: <GoDownload size={25}/>, iconType: '', background: '', notifications: '', hoverColor: 'bg-brightGreen', type: 'action'},
+    {name: 'add server', icon: <TiPlus size={28}/>, iconType: '', background: '', notifications: '', hoverColor: 'brightGreen', type: 'action'},
+    {name: 'explore', icon: <FaCompass size={25}/>, iconType: '', background: '', notifications: '', hoverColor: 'brightGreen', type: 'action'},
+    {name: 'download update', icon: <GoDownload size={25}/>, iconType: '', background: '', notifications: '', hoverColor: 'brightGreen', type: 'action'},
   ]
 
   var shele = 1
