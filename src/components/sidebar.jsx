@@ -47,6 +47,8 @@ export default function sidebar({friendsList, servers, selectedServer, setSelect
     localStorage.setItem('friends', JSON.stringify(modifiedArray))
   } 
 
+  const paths = ['/friends', '/nitro', '/messageRequests', '/shop']
+
   return (
     <div className='h-full flex'>
       <div className="DiscordServers bg-primary pb-3">
@@ -64,7 +66,7 @@ export default function sidebar({friendsList, servers, selectedServer, setSelect
       </div>
 
       <div className="side-sidebar w-60 bg-secondaryDark">
-        { selectedServer === 'default' &&
+        { paths.includes(location.pathname) &&
           <>
             <div className='searchBar h-[50px] shadow-borderShadow flex items-center justify-center px-3'>
             <input type="text" className="bg-primary w-full rounded text-sm pl-2 py-1 text-white placeholder:text-textGrey" placeholder="Find or start a conversation" />
