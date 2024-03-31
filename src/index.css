@@ -27,6 +27,7 @@
   .sidebarHover:hover::-webkit-scrollbar {
     display: block;
   }
+  
   .scrollbar::-webkit-scrollbar {
     width: 10px;
     height: 10px;
@@ -48,6 +49,11 @@
   }
 
   .friendList::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  .serverList::-webkit-scrollbar {
     width: 10px;
     height: 10px;
   }

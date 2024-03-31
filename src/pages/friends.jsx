@@ -30,8 +30,7 @@ export default function friends({friendsList, friendFilter}) {
   
   const [ shownFriends, setShownFriends  ] = useState([])
   const [ searchInput, setSearchInput] = useState('')
-  
-  useEffect(() => { 
+  useEffect(() => {   
     if(!friends || !friends.length) {
       return 
     }
@@ -84,7 +83,7 @@ export default function friends({friendsList, friendFilter}) {
         { friendFilter != 'pending' || friendFilter != 'blocked' ?
           <div className=" max-h-[calc(100svh-9.75rem)] pb-4 friendList friendList-thumb friendList-thumbhover 
           friendList-track mt-4 flex flex-col overflow-y-scroll">
-          { shownFriends && shownFriends.length ? shownFriends.map((friend, index) => 
+          { shownFriends && shownFriends.length ? shownFriends.sort((a, b) => a.name.localeCompare(b.name)).map((friend, index) => 
               <div key={index} className={`w-full min-h-[58px] px-3 group flex justify-between rounded hover:bg-secondHighlightGrey cursor-pointer
                 relative before:content-[''] before:absolute before:h-[1px] before:bg-[#3f4147] before:top-0 before:left-[50%] before:translate-x-[-50%] before:w-[99%] before:block`}>
                 <div className="left flex items-center gap-3">

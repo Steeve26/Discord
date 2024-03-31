@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import content from '../assets/serverContent.png'
 
 export default function serverContent({servers, selectedServer, setSelectedServer, setParamServer, serverExists, setServerExists}) {
   const [ message, setmessage ] = useState('')
   const {name} = useParams()
   const navigate = useNavigate();
+  const location = useLocation();
 
   console.log('testing server', servers.find(server => server.name === name));
   useEffect(() => {
     name === 'default' ? navigate('/friends') :
     servers.find(server => server.name === name) ? (setSelectedServer(name), setmessage(''), setServerExists(true)) :
-   ( setmessage('server not found'), setServerExists(false))
-    setParamServer(name)
+    (setmessage('server not found'), setServerExists(false))
   }, [name])
+  
+  useEffect(() => {
+    console.log('param haram', name);
+    setParamServer(name)
+  }, [location.pathname])
 
   console.log('param in server', name);
   return (

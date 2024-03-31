@@ -19,7 +19,7 @@ import headOn from '../assets/headphone-on.mp3';
 import Status from '../components/status'
 import ServerSidebarContent from "./serverSidebarContent";
 
-export default function sidebar({friendsList, servers, selectedServer, setSelectedServer, paramServer, serverExists}) {
+export default function sidebar({friendsList, servers, selectedServer, setSelectedServer, paramServer, serverExists, setServerExists}) {
 
   const location = useLocation()
   const [toggles, setToggles] = useState({mic: 'false', headphone: 'false'})
@@ -38,8 +38,6 @@ export default function sidebar({friendsList, servers, selectedServer, setSelect
   const checkLocation = (path) => {
     return location.pathname === path ? true : false
   }
-
-  console.log('loc', checkLocation('/friends'));
 
   const [ friendsCopy, setFriendsCopy ] = useState(localStorage.getItem('friends') ? JSON.parse(localStorage.getItem('friends')) : [...friendsList])
   localStorage.setItem('friends', JSON.stringify(friendsCopy))
@@ -60,22 +58,26 @@ export default function sidebar({friendsList, servers, selectedServer, setSelect
           {servers.map((server, index) => 
             index == 0 ? 
             <div key={index}>
-              <DiscordServer servers={servers} name={server.name} icon={server.icon} index={index} type={server.type} iconType={server.iconType} background={server.background} hoverColor={server.hoverColor} selectedServer={selectedServer} setSelectedServer={setSelectedServer}/>
+              <DiscordServer servers={servers} name={server.name} icon={server.icon} index={index} type={server.type} 
+                iconType={server.iconType} background={server.background} hoverColor={server.hoverColor} selectedServer={selectedServer} 
+                setSelectedServer={setSelectedServer} serverExists={serverExists} setServerExists={setServerExists}/>
               <hr className='border-highlightLightGrey w-[50%] mx-auto my-1 mt-2' />
             </div> :
-            <DiscordServer servers={servers} key={index} name={server.name} icon={server.icon} index={index} type={server.type} iconType={server.iconType} background={server.background} hoverColor={server.hoverColor} selectedServer={selectedServer} setSelectedServer={setSelectedServer}/>
+            <DiscordServer servers={servers} key={index} name={server.name} icon={server.icon} index={index} type={server.type} 
+              iconType={server.iconType} background={server.background} hoverColor={server.hoverColor} selectedServer={selectedServer} 
+              setSelectedServer={setSelectedServer} serverExists={serverExists} setServerExists={setServerExists}/>
           )}
         </div>
       </div>
 
-      <div className="side-sidebar w-60 bg-secondaryDark">
+      <div className="side-sidebar w-60 bg-secondaryDark flex flex-col">
         { paths.includes(location.pathname) &&
           <>
             <div className='searchBar h-[50px] shadow-borderShadow flex items-center justify-center px-3'>
             <input type="text" className="bg-primary w-full rounded text-sm pl-2 py-1 text-white placeholder:text-textGrey" placeholder="Find or start a conversation" />
             </div>
 
-            <div className={`sidebarHover pr-[9.5px] ${friendsCopy.length && 'hover:pr-0'} content h-[calc(100%-103px)] pl-2 pt-2 pb-2 overflow-y-auto scroll scrollbar scrollbar-track scrollbar-thumb scrollbar-thumbhover`}>
+            <div className={`sidebarHover pr-[9.5px] ${friendsCopy.length && 'hover:pr-0'} content h-[calc(100%-103px)] pl-2 pt-2 pb-2 overflow-y-auto scrollbar scrollbar-track scrollbar-thumb scrollbar-thumbhover`}>
               <div className="buttons flex flex-col gap-0.5 mb-5">
                 <Link to="/friends">
                   <button className={`flex items-center pl-[21px] w-full ${checkLocation('/friends') && 'bg-secondHighlightGrey text-textOffWhite'} hover:bg-[#36373d] rounded-md h-[42px] mr-[1px]
@@ -116,7 +118,7 @@ export default function sidebar({friendsList, servers, selectedServer, setSelect
                 </h1>
 
                 <div className="friends mt-2">
-                  {friendsCopy.map((friend, index) => {
+                  {friendsCopy.sort((a, b) => a.name.localeCompare(b.name)).map((friend, index) => {
                     return <Profile key={index} icon={friend.icon} name={friend.name} status={friend.status} position={'modified'} del={modifyFriends}/>
                   })}
 
@@ -128,42 +130,43 @@ export default function sidebar({friendsList, servers, selectedServer, setSelect
               </div>
             </div>
 
-            <div className="userBar flex bg-primaryLight min-h-[50px] pl-1 px-2 py-1">
-              <div className="profile flex items-center gap-2 flex-1 hover:bg-highlightLightGrey rounded-[4px] py-1 pl-2">
-                <div className="icon w-[32px] h-[32px] relative">
-                  <img src="https://cdn.discordapp.com/avatars/332771468276400129/18b4eb561bb3b6fbe8c06c8a4bcc9768.webp?size=40" alt="user ico"
-                    className="rounded-2xl " />
-                  <Status status={'online'}/>
-                </div>
-
-                <div className="text-textGrey font-ggSans">
-                  <p className="font-medium text-sm text-white">Estif</p>
-                  <p className="text-xs">Online</p>
-                </div>
-              </div>
-
-              <div className="controls flex items-center justify-end gap-[2px] flex-1">
-                <button onClick={() => {toggles.mic ? mcOff.play() : mcOn.play(); setToggles(prev => ({...prev, mic: !prev.mic})); !toggles.mic && setToggles(prev => ({...prev, headphone: true}))}} className="flex items-center justify-center w-8 h-8 relative hover:bg-highlightLightGrey p-2 rounded-[4px]">
-                  {toggles.mic ? <FaMicrophone color="#b5bac1" size={17}/> : 
-                  <FaMicrophoneSlash className=" absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] scale-x-[-1]" color="#f23f42" size={22}/>}
-                </button>
-
-                <button onClick={() => {toggles.headphone ? hOff.play() : hOn.play(); setToggles(prev => ({...prev, headphone: !prev.headphone})); toggles.headphone && setToggles(prev => ({...prev, mic: false}))}} 
-                className="relative flex items-center justify-center w-8 h-8 hover:bg-highlightLightGrey w-8 p-1 rounded-[4px]">
-                  <img src={headphone} alt="icon" loading="lazy" 
-                  className={`${toggles.headphone ? 'w-6 visible opacity-100 pointer-events-auto' : 'w-5 translate-x-[-1px] invisible opacity-0 pointer-events-none'}`}/>
-                  
-                  <img src={headphoneoff} alt="icon" className={`w-[21px] h-[21px] absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] ${toggles.headphone ? 'opacity-0 pointer-events-none invisible' : 'opacity-100 pointer-events-auto visible'}`}/>
-                </button>
-                <button className=" flex items-center justify-center w-8 h-8 hover:bg-highlightLightGrey p-1 rounded-[4px]"><RiSettings5Fill color="#b5bac1" size={20}/></button>
-              </div>
-            </div>
           </>
         }
 
         { paramServer && serverExists &&
           <ServerSidebarContent servers={servers} selectedServer={selectedServer}/>
         }
+
+        <div className="userBar flex bg-primaryLight min-h-[50px] pl-1 px-2 py-1 mt-auto">
+          <div className="profile flex items-center gap-2 flex-1 hover:bg-highlightLightGrey rounded-[4px] py-1 pl-2">
+            <div className="icon w-[32px] h-[32px] relative">
+              <img src="https://cdn.discordapp.com/avatars/332771468276400129/18b4eb561bb3b6fbe8c06c8a4bcc9768.webp?size=40" alt="user ico"
+                className="rounded-2xl " />
+              <Status status={'online'}/>
+            </div>
+
+            <div className="text-textGrey font-ggSans">
+              <p className="font-medium text-sm text-white">Estif</p>
+              <p className="text-xs">Online</p>
+            </div>
+          </div>
+
+          <div className="controls flex items-center justify-end gap-[2px] flex-1">
+            <button onClick={() => {toggles.mic ? mcOff.play() : mcOn.play(); setToggles(prev => ({...prev, mic: !prev.mic})); !toggles.mic && setToggles(prev => ({...prev, headphone: true}))}} className="flex items-center justify-center w-8 h-8 relative hover:bg-highlightLightGrey p-2 rounded-[4px]">
+              {toggles.mic ? <FaMicrophone color="#b5bac1" size={17}/> : 
+              <FaMicrophoneSlash className=" absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] scale-x-[-1]" color="#f23f42" size={22}/>}
+            </button>
+
+            <button onClick={() => {toggles.headphone ? hOff.play() : hOn.play(); setToggles(prev => ({...prev, headphone: !prev.headphone})); toggles.headphone && setToggles(prev => ({...prev, mic: false}))}} 
+            className="relative flex items-center justify-center w-8 h-8 hover:bg-highlightLightGrey w-8 p-1 rounded-[4px]">
+              <img src={headphone} alt="icon" loading="lazy" 
+              className={`${toggles.headphone ? 'w-6 visible opacity-100 pointer-events-auto' : 'w-5 translate-x-[-1px] invisible opacity-0 pointer-events-none'}`}/>
+              
+              <img src={headphoneoff} alt="icon" className={`w-[21px] h-[21px] absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] ${toggles.headphone ? 'opacity-0 pointer-events-none invisible' : 'opacity-100 pointer-events-auto visible'}`}/>
+            </button>
+            <button className=" flex items-center justify-center w-8 h-8 hover:bg-highlightLightGrey p-1 rounded-[4px]"><RiSettings5Fill color="#b5bac1" size={20}/></button>
+          </div>
+        </div>
 
       </div>
 
