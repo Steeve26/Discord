@@ -78,14 +78,10 @@ function App() {
       }
     });
 
-    console.log('perf test')
-    shele += 1
-    console.log('perf', shele);
-    console.log('perf', shele);
     return modifiedFriends
   }
 
-  const [ modifiedFriends, setModifiedFriends ] = useState()
+  const [ modifiedFriends, setModifiedFriends ] = useState([])
   const [ friendFilter, seFriendFilter ] = useState('online')
   const [ selectedServer, setSelectedServer ] = useState('default')
 
