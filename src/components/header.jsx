@@ -4,7 +4,7 @@ import Inbox from '../assets/icons/inbox'
 import Help from '../assets/icons/help'
 import AddChat from '../assets/icons/addChat'
 
-export default function header({friendFilter, seFriendFilter, selectedServer}) {
+export default function header({friends, friendFilter, seFriendFilter, selectedServer}) {
 
   const [ options, setOptions ] = useState(['online', 'all', 'pending', 'blocked'])
   const paths = ['/friends', '/nitro', '/messageRequests', '/shop']
@@ -19,7 +19,7 @@ export default function header({friendFilter, seFriendFilter, selectedServer}) {
 
           <ul className='pl-4 flex gap-4 capitalize font-ggSansl'>
             {options.map((option, index) => 
-                <li key={index}>{console.log('test', friendFilter, option)}<button onClick={() => seFriendFilter(option)}
+                <li key={index}>{console.log('test', friendFilter, option)}<button onClick={() => friends && seFriendFilter(option)}
                 className={`capitalize px-2 rounded font-medium ${friendFilter == option ? 'bg-secondHighlightGrey  text-white': 'text-textGrey'} hover:bg-secondHighlightGrey text-base hover:text-[#dbdee1]`}>{option}</button></li>
             )}
             <li><button className='capitalize duration-200 px-2 rounded font-medium bg-[#248046] border-2 border-transparent hover:border-[#248046] hover:bg-transparent text-white'>add friend</button></li>

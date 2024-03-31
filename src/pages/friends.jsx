@@ -19,11 +19,11 @@ export default function friends({friendsList, friendFilter}) {
     if(!friends || !friends.length) {
       return 
     }
-    console.log(friends)
     return friends.reduce((activeFriends, friend) => {
       if (friend.status !== 'offline') {
         activeFriends.push(friend);
       }
+
       return activeFriends;
     }, []);
   };
@@ -32,10 +32,18 @@ export default function friends({friendsList, friendFilter}) {
   const [ searchInput, setSearchInput] = useState('')
   
   useEffect(() => { 
+    if(!friends || !friends.length) {
+      return 
+    }
     filterShownData()
-    setShownFriends(getActiveFriends(friends))
     searchInput && setSearchInput('')
   }, [friendFilter])
+  
+  useEffect(() => {
+    if(friends){
+      setShownFriends(getActiveFriends(friends))
+    }
+  }, [friends])
   
   const filterShownData = () => {
     if(friendFilter == 'all')

@@ -88,12 +88,16 @@ function App() {
   useEffect(() => {
     setModifiedFriends(getFriends(friends))
   }, [])
+
+  useEffect(() => {
+    seFriendFilter('online')
+  }, [location.pathname])
   
   return (
     <main className=" h-svh min-w-[1020px] flex bg-secondary overflow-X-auto overflow-y-hidden ">
       <Sidebar friendsList={modifiedFriends} servers={servers} selectedServer={selectedServer} setSelectedServer={setSelectedServer}/>
       <section className="w-full flex flex-col">
-          <Header friendFilter={friendFilter} seFriendFilter={seFriendFilter} servers={servers} selectedServer={selectedServer}/>
+          <Header friends={modifiedFriends} friendFilter={friendFilter} seFriendFilter={seFriendFilter} servers={servers} selectedServer={selectedServer}/>
         <div className="bottomSection flex flex-grow">
           
           <div className="mainContent w-full">
