@@ -1,5 +1,5 @@
 import Sidebar from "./components/sidebar"
-import { useLocation } from "react-router-dom"
+import { useLocation, useParams } from "react-router-dom"
 import Header from "./components/header"
 import Routes from "./routes/routes"
 import { useEffect, useState } from "react"
@@ -38,13 +38,13 @@ function App() {
 
   const servers = [
     {name: 'default', icon: <FaDiscord color='white' size={33}/>, iconType: '', background: '', notifications: '', hoverColor: 'hover:bg-discordBlue', type: ''},
-    {name: 'midjourney', icon: midJourney, iconType: 'image', background: 'bg-white', notifications: '', hoverColor: '', type: ''},
-    {name: 'fortnite', icon: 'https://cdn.discordapp.com/icons/322850917248663552/0d76b3a60f4987ca91d0456a6905bdf8.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
-    {name: 'dark reef', icon: 'https://cdn.discordapp.com/icons/303457917955342357/0cefdbe4925567dde19dfc5498af948c.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
-    {name: 'minecraft', icon: 'https://cdn.discordapp.com/icons/302094807046684672/a_916131f4d4e8c6f6eed9f590a1982725.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
-    {name: 'lofi girl', icon: 'https://cdn.discordapp.com/icons/707230275175841915/36c8c90fb08f6c097d897b7a0fa15312.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
-    {name: 'next.js', icon: 'https://cdn.discordapp.com/icons/752553802359505017/065ee8ece89b91115525fef8ae2c15cb.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
-    {name: 'voltaic', icon: 'https://cdn.discordapp.com/icons/153919886471593984/41005b5c251283f2f53321794c6e4078.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
+    {name: 'midjourney', icon: midJourney, iconType: 'image', background: 'bg-white', notifications: '', hoverColor: '', type: '', banner: 'https://cdn.discordapp.com/banners/662267976984297473/63249e6867f276efc07d32793b7b3b5a.webp?size=300'},
+    {name: 'fortnite', icon: 'https://cdn.discordapp.com/icons/322850917248663552/0d76b3a60f4987ca91d0456a6905bdf8.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: '', banner: 'https://cdn.discordapp.com/banners/662267976984297473/63249e6867f276efc07d32793b7b3b5a.webp?size=300'},
+    {name: 'dark reef', icon: 'https://cdn.discordapp.com/icons/303457917955342357/0cefdbe4925567dde19dfc5498af948c.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: '', banner: 'https://cdn.discordapp.com/banners/662267976984297473/63249e6867f276efc07d32793b7b3b5a.webp?size=300'},
+    {name: 'minecraft', icon: 'https://cdn.discordapp.com/icons/302094807046684672/a_916131f4d4e8c6f6eed9f590a1982725.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: '', banner: 'https://cdn.discordapp.com/banners/662267976984297473/63249e6867f276efc07d32793b7b3b5a.webp?size=300'},
+    {name: 'lofi girl', icon: 'https://cdn.discordapp.com/icons/707230275175841915/36c8c90fb08f6c097d897b7a0fa15312.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: '', banner: 'https://cdn.discordapp.com/banners/662267976984297473/63249e6867f276efc07d32793b7b3b5a.webp?size=300'},
+    {name: 'next.js', icon: 'https://cdn.discordapp.com/icons/752553802359505017/065ee8ece89b91115525fef8ae2c15cb.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: '', banner: 'https://cdn.discordapp.com/banners/662267976984297473/63249e6867f276efc07d32793b7b3b5a.webp?size=300'},
+    {name: 'voltaic', icon: 'https://cdn.discordapp.com/icons/153919886471593984/41005b5c251283f2f53321794c6e4078.webp?size=128', iconType: 'image', background: '', notifications: '', hoverColor: '', type: '', banner: 'https://cdn.discordapp.com/banners/662267976984297473/63249e6867f276efc07d32793b7b3b5a.webp?size=300'},
     {name: 'react.js', icon: react, iconType: 'image', background: '', notifications: '', hoverColor: '', type: ''},
     {name: 'add server', icon: <TiPlus size={28}/>, iconType: '', background: '', notifications: '', hoverColor: 'hover:bg-brightGreen', type: 'action'},
     {name: 'explore', icon: <FaCompass size={25}/>, iconType: '', background: '', notifications: '', hoverColor: 'hover:bg-brightGreen', type: 'action'},
@@ -84,6 +84,8 @@ function App() {
   const [ modifiedFriends, setModifiedFriends ] = useState([])
   const [ friendFilter, seFriendFilter ] = useState('online')
   const [ selectedServer, setSelectedServer ] = useState('default')
+  const [ paramServer, setParamServer ] = useState('')
+  const [ serverExists, setServerExists ] = useState()
 
   useEffect(() => {
     setModifiedFriends(getFriends(friends))
@@ -95,13 +97,13 @@ function App() {
   
   return (
     <main className=" h-svh min-w-[1020px] flex bg-secondary overflow-X-auto overflow-y-hidden ">
-      <Sidebar friendsList={modifiedFriends} servers={servers} selectedServer={selectedServer} setSelectedServer={setSelectedServer}/>
+      <Sidebar friendsList={modifiedFriends} servers={servers} selectedServer={selectedServer} setSelectedServer={setSelectedServer} paramServer={paramServer} serverExists={serverExists}/>
       <section className="w-full flex flex-col">
-          <Header friends={modifiedFriends} friendFilter={friendFilter} seFriendFilter={seFriendFilter} servers={servers} selectedServer={selectedServer}/>
+          <Header friends={modifiedFriends} friendFilter={friendFilter} seFriendFilter={seFriendFilter} servers={servers} selectedServer={selectedServer} serverExists={serverExists}/>
         <div className="bottomSection flex flex-grow">
           
           <div className="mainContent w-full">
-            <Routes friendsList={modifiedFriends} friendFilter={friendFilter} servers={servers} selectedServer={selectedServer}/>
+            <Routes friendsList={modifiedFriends} friendFilter={friendFilter} servers={servers} selectedServer={selectedServer} setSelectedServer={setSelectedServer} paramServer={paramServer} setParamServer={setParamServer} serverExists={serverExists} setServerExists={setServerExists}/>
           </div>
 
           { location.pathname === '/friends' && 

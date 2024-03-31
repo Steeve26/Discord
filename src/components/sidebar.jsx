@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { FaMicrophone, FaMicrophoneSlash } from "react-icons/fa";
 import { GoPlus } from "react-icons/go";
 import { RiSettings5Fill } from "react-icons/ri";
@@ -17,8 +17,9 @@ import micOn from '../assets/mic-on.mp3';
 import headOff from '../assets/headphone-off.mp3';
 import headOn from '../assets/headphone-on.mp3';
 import Status from '../components/status'
+import ServerSidebarContent from "./serverSidebarContent";
 
-export default function sidebar({friendsList, servers, selectedServer, setSelectedServer}) {
+export default function sidebar({friendsList, servers, selectedServer, setSelectedServer, paramServer, serverExists}) {
 
   const location = useLocation()
   const [toggles, setToggles] = useState({mic: 'false', headphone: 'false'})
@@ -59,10 +60,10 @@ export default function sidebar({friendsList, servers, selectedServer, setSelect
           {servers.map((server, index) => 
             index == 0 ? 
             <div key={index}>
-              <DiscordServer name={server.name} icon={server.icon} index={index} type={server.type} iconType={server.iconType} background={server.background} hoverColor={server.hoverColor} selectedServer={selectedServer} setSelectedServer={setSelectedServer}/>
+              <DiscordServer servers={servers} name={server.name} icon={server.icon} index={index} type={server.type} iconType={server.iconType} background={server.background} hoverColor={server.hoverColor} selectedServer={selectedServer} setSelectedServer={setSelectedServer}/>
               <hr className='border-highlightLightGrey w-[50%] mx-auto my-1 mt-2' />
             </div> :
-            <DiscordServer key={index} name={server.name} icon={server.icon} index={index} type={server.type} iconType={server.iconType} background={server.background} hoverColor={server.hoverColor} selectedServer={selectedServer} setSelectedServer={setSelectedServer}/>
+            <DiscordServer servers={servers} key={index} name={server.name} icon={server.icon} index={index} type={server.type} iconType={server.iconType} background={server.background} hoverColor={server.hoverColor} selectedServer={selectedServer} setSelectedServer={setSelectedServer}/>
           )}
         </div>
       </div>
@@ -159,6 +160,11 @@ export default function sidebar({friendsList, servers, selectedServer, setSelect
             </div>
           </>
         }
+
+        { paramServer && serverExists &&
+          <ServerSidebarContent servers={servers} selectedServer={selectedServer}/>
+        }
+
       </div>
 
     </div>

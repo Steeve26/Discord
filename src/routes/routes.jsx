@@ -4,8 +4,9 @@ import Enemies from '../pages/enemies'
 import Nitro from '../pages/nitro'
 import MessageRequests from '../pages/messageRequests'
 import Shop from '../pages/shop'
+import ServerContent from "../pages/serverContent"
 
-export default function routes({friendsList, friendFilter}) {
+export default function routes({friendsList, friendFilter, servers, selectedServer, setSelectedServer, setParamServer, serverExists, setServerExists}) {
   return (
     <Routes>
       <Route path="/" element={<Navigate to={'/friends'}/>} />
@@ -14,6 +15,7 @@ export default function routes({friendsList, friendFilter}) {
       <Route path="/nitro" element={<Nitro/>} />
       <Route path="/messageRequests" element={<MessageRequests/>} />
       <Route path="/shop" element={<Shop/>} />
+      <Route path="/server/:name" element={<ServerContent servers={servers} selectedServer={selectedServer} setSelectedServer={setSelectedServer} setParamServer={setParamServer} serverExists={serverExists} setServerExists={setServerExists}/>} />
     </Routes>
   )
 }

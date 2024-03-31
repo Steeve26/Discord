@@ -11,7 +11,7 @@ export default function discordServer({name, icon, index, type, iconType, backgr
     if(type == 'action')
     return
     setSelectedServer(name)
-    name === 'default' ? navigate('/friends') : navigate('/' + name)
+    name === 'default' ? navigate('/friends') : navigate(`/server/${name}`)
   }
   return (
     <button className={`flex justify-center px-3 active:translate-y-[2px]`} onClick={handleServerSelection}>
