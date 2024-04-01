@@ -103,9 +103,31 @@ function App() {
     setSelectedUser()
   }, [location.pathname])
 
+  const updateStoredFriends = () => {
+    const storedFriends = JSON.parse(localStorage.getItem('friends'))
+
+    if (!modifiedFriends.length || !storedFriends || !storedFriends.length){  
+      return
+    }
+
+    if(modifiedFriends.length && storedFriends.length) {
+      const updatedFriends = storedFriends.map(mdfriends => {
+        const modifiedNiggas = modifiedFriends.find(stfriends => stfriends.name === mdfriends.name)
+        if(modifiedNiggas && modifiedNiggas.status !== mdfriends.status) {
+          return {...mdfriends, status: modifiedNiggas.status}
+        }
+        return mdfriends
+      })
+  
+      return updatedFriends
+    }
+
+  }
+
+
   return (
     <main className=" h-svh min-w-[1020px] flex bg-secondary overflow-X-auto overflow-y-hidden ">
-      {modifiedFriends.length && <Sidebar friendsList={modifiedFriends} servers={servers} selectedServer={selectedServer} setSelectedServer={setSelectedServer} paramServer={paramServer} serverExists={serverExists} setServerExists={setServerExists} selectedUser={selectedUser} setSelectedUser={setSelectedUser}/>}
+      {modifiedFriends.length && <Sidebar friendsList={modifiedFriends} servers={servers} selectedServer={selectedServer} setSelectedServer={setSelectedServer} paramServer={paramServer} serverExists={serverExists} setServerExists={setServerExists} selectedUser={selectedUser} setSelectedUser={setSelectedUser} updateStoredFriends={updateStoredFriends}/>}
       <section className="w-full flex flex-col">
           <Header friends={modifiedFriends} friendFilter={friendFilter} seFriendFilter={seFriendFilter} servers={servers} selectedServer={selectedServer} serverExists={serverExists}/>
         <div className="bottomSection flex flex-grow">

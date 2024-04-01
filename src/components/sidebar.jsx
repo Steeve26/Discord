@@ -19,7 +19,7 @@ import headOn from '../assets/headphone-on.mp3';
 import Status from '../components/status'
 import ServerSidebarContent from "./serverSidebarContent";
 
-export default function sidebar({friendsList, servers, selectedServer, setSelectedServer, paramServer, serverExists, setServerExists, selectedUser, setSelectedUser}) {
+export default function sidebar({friendsList, servers, selectedServer, setSelectedServer, paramServer, serverExists, setServerExists, selectedUser, setSelectedUser, updateStoredFriends}) {
 
   const location = useLocation()
   const [toggles, setToggles] = useState({mic: 'false', headphone: 'false'})
@@ -42,10 +42,17 @@ export default function sidebar({friendsList, servers, selectedServer, setSelect
   const [ friendsCopy, setFriendsCopy ] = useState([])
 
   useState(() => {
-    const result = JSON.parse(localStorage.getItem('friends')) ? JSON.parse(localStorage.getItem('friends')) : [...friendsList]
+    const updateResult = updateStoredFriends()
+    const storedResult = JSON.parse(localStorage.getItem('friends'));
+    const result = storedResult && !storedResult.length ? storedResult : storedResult && storedResult.length ? updateResult : [...friendsList]
     setFriendsCopy(result)
     localStorage.setItem('friends', JSON.stringify(result))
   }, [])
+  
+  const bringBackFriends = () => {
+    setFriendsCopy([...friendsList])
+    localStorage.setItem('friends', JSON.stringify([...friendsList]))
+  }
 
   const modifyFriends = (name) => {
     const modifiedArray = friendsCopy.filter((friend, index) => friend.name !== name)
@@ -128,7 +135,10 @@ export default function sidebar({friendsList, servers, selectedServer, setSelect
                   })}
 
                   {!friendsCopy.length &&
-                    <h3 className="text-balance text-center text-textGrey px-2 mt-4">You are going to die from loneliness bro</h3>
+                    <div className="flex flex-col">
+                      <h3 className="text-balance text-center text-textGrey px-2 mt-4">You are going to die from loneliness bro</h3>
+                      <button onClick={bringBackFriends} className=" bg-discordBlue font-ggSans capitalize px-3 py-1 hover:bg-[#4752c4] hover:px-4 text-textOffWhite rounded mt-3 mx-auto duration-200 ">bring back your friends</button>
+                    </div>
                   }
                 </div>
 
