@@ -6,9 +6,11 @@ import { HiOutlineDotsVertical } from "react-icons/hi";
 import Status from '../components/status';
 import wumpus from '../assets/wumpus.png'
 import sadWumpus from '../assets/sad-wumpus.png'
+import { useNavigate } from 'react-router-dom';
 
-export default function friends({friendsList, friendFilter}) {
+export default function friends({friendsList, friendFilter, selectedUser, setSelectedUser}) {
 
+  const navigate = useNavigate()
   const [ friends, setFriends ] = useState()
 
   useEffect(() => {
@@ -84,7 +86,7 @@ export default function friends({friendsList, friendFilter}) {
           <div className=" max-h-[calc(100svh-9.75rem)] pb-4 friendList friendList-thumb friendList-thumbhover 
           friendList-track mt-4 flex flex-col overflow-y-scroll">
           { shownFriends && shownFriends.length ? shownFriends.sort((a, b) => a.name.localeCompare(b.name)).map((friend, index) => 
-              <div key={index} className={`w-full min-h-[58px] px-3 group flex justify-between rounded hover:bg-secondHighlightGrey cursor-pointer
+              <div key={index} onClick={() => {setSelectedUser(friend); navigate(`/slideNdm/${friend.name}`)}} className={`w-full min-h-[58px] px-3 group flex justify-between rounded hover:bg-secondHighlightGrey cursor-pointer
                 relative before:content-[''] before:absolute before:h-[1px] before:bg-[#3f4147] before:top-0 before:left-[50%] before:translate-x-[-50%] before:w-[99%] before:block`}>
                 <div className="left flex items-center gap-3">
                   <div className='relative'>

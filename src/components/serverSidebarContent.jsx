@@ -49,15 +49,15 @@ export default function serverSidebarContent({servers, selectedServer}) {
             <div className='bg-[#404249] hover:bg-[#35373c] text-textOffWhite px-2 py-1 rounded cursor-pointer flex items-center gap-2'><FaHashtag/> getting-started</div>
             <div className='hover:bg-[#35373c] px-2 py-1 rounded cursor-pointer flex items-center gap-2'><FaHashtag/> rules</div>
           </div>
-          <div className='flex items-center justify-between hover:bg-[#35373c] px-2 py-1 rounded cursor-pointer'><span className='flex items-center gap-2'><Megaphone /> announcements</span> <BsPersonFillAdd/></div>
-          <div className='flex items-center justify-between hover:bg-[#35373c] px-2 py-1 rounded cursor-pointer'><span className='flex items-center gap-2'><Megaphone /> updates</span> <BsPersonFillAdd/></div>
+          <div className='flex items-center justify-between hover:bg-[#35373c] px-2 py-1 rounded cursor-pointer group'><span className='flex items-center gap-2 group-hover:brightness-150'><Megaphone /> announcements</span> <BsPersonFillAdd className=' opacity-0 pointer-events-none hover:text-textOffWhite group-hover:opacity-100 group-hover:pointer-events-auto '/></div>
+          <div className='flex items-center justify-between hover:bg-[#35373c] px-2 py-1 rounded cursor-pointer group'><span className='flex items-center gap-2 group-hover:brightness-150'><Megaphone /> updates</span> <BsPersonFillAdd className=' opacity-0 pointer-events-none hover:text-textOffWhite group-hover:opacity-100 group-hover:pointer-events-auto '/></div>
         </div>
 
         <div className="collapsableContainer">
           <span className="title uppercase block mb-2 font-ggSans text-xs font-semibold text-[#797d87] flex items-center gap-2 hover:text-textOffWhite">support <FaAngleDown/></span>
           <div className="container flex flex-col gap-1">
             <div className='hover:bg-[#35373c] px-2 py-1 rounded cursor-pointer group'>
-              <p className='group-hover:brightness-150 flex items-center gap-2 justify-between'><span className='flex items-center gap-2'><FaHashtag/> trial-support</span> <BsPersonFillAdd/></p>
+              <p className='group-hover:brightness-150 flex items-center gap-2 justify-between'><span className='flex items-center gap-2'><FaHashtag/> trial-support</span> <BsPersonFillAdd className=' opacity-0 pointer-events-none hover:text-textOffWhite group-hover:opacity-100 group-hover:pointer-events-auto '/></p>
             </div>
           </div>
         </div>
@@ -66,10 +66,10 @@ export default function serverSidebarContent({servers, selectedServer}) {
           <span className="title uppercase block mb-2 font-ggSans text-xs font-semibold text-[#797d87] flex items-center gap-2 hover:text-textOffWhite">newcomer rooms 3 <FaAngleDown/></span>
           <div className="container flex flex-col gap-1">
             <div className='hover:bg-[#35373c] px-2 py-1 rounded cursor-pointer group'>
-              <p className='group-hover:brightness-150 flex items-center gap-2 justify-between'><span className='flex items-center gap-2'><FaHashtag/> newbies-1</span> <BsPersonFillAdd/></p>
+              <p className='group-hover:brightness-150 flex items-center gap-2 justify-between'><span className='flex items-center gap-2'><FaHashtag/> newbies-1</span> <BsPersonFillAdd className=' opacity-0 pointer-events-none hover:text-textOffWhite group-hover:opacity-100 group-hover:pointer-events-auto '/></p>
             </div>
             <div className='hover:bg-[#35373c] px-2 py-1 rounded cursor-pointer group'>
-              <p className='group-hover:brightness-150 flex items-center gap-2 justify-between'><span className='flex items-center gap-2'><FaHashtag/> newbies-2</span> <BsPersonFillAdd/></p>
+              <p className='group-hover:brightness-150 flex items-center gap-2 justify-between'><span className='flex items-center gap-2'><FaHashtag/> newbies-2</span> <BsPersonFillAdd className=' opacity-0 pointer-events-none hover:text-textOffWhite group-hover:opacity-100 group-hover:pointer-events-auto '/></p>
             </div>
           </div>
         </div>
@@ -78,10 +78,10 @@ export default function serverSidebarContent({servers, selectedServer}) {
           <span className="title uppercase block mb-2 font-ggSans text-xs font-semibold text-[#797d87] flex items-center gap-2 hover:text-textOffWhite">newcomer rooms 3 <FaAngleDown/></span>
           <div className="container flex flex-col gap-1">
             <div className='hover:bg-[#35373c] px-2 py-1 rounded cursor-pointer group'>
-              <p className='group-hover:brightness-150 flex items-center gap-2 justify-between'><span className='flex items-center gap-2'><FaHashtag/> newbies-1</span> <BsPersonFillAdd/></p>
+              <p className='group-hover:brightness-150 flex items-center gap-2 justify-between'><span className='flex items-center gap-2'><FaHashtag/> newbies-1</span> <BsPersonFillAdd className=' opacity-0 pointer-events-none hover:text-textOffWhite group-hover:opacity-100 group-hover:pointer-events-auto '/></p>
             </div>
             <div className='hover:bg-[#35373c] px-2 py-1 rounded cursor-pointer group'>
-              <p className='group-hover:brightness-150 flex items-center gap-2 justify-between'><span className='flex items-center gap-2'><FaHashtag/> newbies-2</span> <BsPersonFillAdd/></p>
+              <p className='group-hover:brightness-150 flex items-center gap-2 justify-between'><span className='flex items-center gap-2'><FaHashtag/> newbies-2</span> <BsPersonFillAdd className=' opacity-0 pointer-events-none hover:text-textOffWhite group-hover:opacity-100 group-hover:pointer-events-auto '/></p>
             </div>
           </div>
         </div>
@@ -90,10 +90,10 @@ export default function serverSidebarContent({servers, selectedServer}) {
           <span className="title uppercase block mb-2 font-ggSans text-xs font-semibold text-[#797d87] flex items-center gap-2 hover:text-textOffWhite">chat <FaAngleDown/></span>
           <div className="container flex flex-col gap-1">
             <div className='hover:bg-[#35373c] px-2 py-1 rounded cursor-pointer group'>
-              <p className='group-hover:brightness-150 flex items-center gap-2 justify-between'><span className='flex items-center gap-2'><FaHashtag/> discussion</span> <BsPersonFillAdd/></p>
+              <p className='group-hover:brightness-150 flex items-center gap-2 justify-between'><span className='flex items-center gap-2'><FaHashtag/> discussion</span> <BsPersonFillAdd className=' opacity-0 pointer-events-none hover:text-textOffWhite group-hover:opacity-100 group-hover:pointer-events-auto '/></p>
             </div>
             <div className='hover:bg-[#35373c] px-2 py-1 rounded cursor-pointer group'>
-              <p className='group-hover:brightness-150 flex items-center gap-2 justify-between'><span className='flex items-center gap-2'><FaHashtag/> prompt-chat</span> <BsPersonFillAdd/></p>
+              <p className='group-hover:brightness-150 flex items-center gap-2 justify-between'><span className='flex items-center gap-2'><FaHashtag/> prompt-chat</span> <BsPersonFillAdd className=' opacity-0 pointer-events-none hover:text-textOffWhite group-hover:opacity-100 group-hover:pointer-events-auto '/></p>
             </div>
           </div>
         </div>
@@ -102,13 +102,13 @@ export default function serverSidebarContent({servers, selectedServer}) {
           <span className="title uppercase block mb-2 font-ggSans text-xs font-semibold text-[#797d87] flex items-center gap-2 hover:text-textOffWhite">showcase <FaAngleDown/></span>
           <div className="container flex flex-col gap-1">
             <div className='hover:bg-[#35373c] px-2 py-1 rounded cursor-pointer group'>
-              <p className='group-hover:brightness-150 flex items-center gap-2 justify-between'><span className='flex items-center gap-2'><FaHashtag/> showcase 1</span> <BsPersonFillAdd/></p>
+              <p className='group-hover:brightness-150 flex items-center gap-2 justify-between'><span className='flex items-center gap-2'><FaHashtag/> showcase 1</span> <BsPersonFillAdd className=' opacity-0 pointer-events-none hover:text-textOffWhite group-hover:opacity-100 group-hover:pointer-events-auto '/></p>
             </div>
             <div className='hover:bg-[#35373c] px-2 py-1 rounded cursor-pointer group'>
-              <p className='group-hover:brightness-150 flex items-center gap-2 justify-between'><span className='flex items-center gap-2'><FaHashtag/> showcase 2</span> <BsPersonFillAdd/></p>
+              <p className='group-hover:brightness-150 flex items-center gap-2 justify-between'><span className='flex items-center gap-2'><FaHashtag/> showcase 2</span> <BsPersonFillAdd className=' opacity-0 pointer-events-none hover:text-textOffWhite group-hover:opacity-100 group-hover:pointer-events-auto '/></p>
             </div>
             <div className='hover:bg-[#35373c] px-2 py-1 rounded cursor-pointer group'>
-              <p className='group-hover:brightness-150 flex items-center gap-2 justify-between'><span className='flex items-center gap-2'><FaHashtag/> showcase 3</span> <BsPersonFillAdd/></p>
+              <p className='group-hover:brightness-150 flex items-center gap-2 justify-between'><span className='flex items-center gap-2'><FaHashtag/> showcase 3</span> <BsPersonFillAdd className=' opacity-0 pointer-events-none hover:text-textOffWhite group-hover:opacity-100 group-hover:pointer-events-auto '/></p>
             </div>
           </div>
         </div>

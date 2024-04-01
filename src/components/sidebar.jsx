@@ -19,7 +19,7 @@ import headOn from '../assets/headphone-on.mp3';
 import Status from '../components/status'
 import ServerSidebarContent from "./serverSidebarContent";
 
-export default function sidebar({friendsList, servers, selectedServer, setSelectedServer, paramServer, serverExists, setServerExists}) {
+export default function sidebar({friendsList, servers, selectedServer, setSelectedServer, paramServer, serverExists, setServerExists, selectedUser, setSelectedUser}) {
 
   const location = useLocation()
   const [toggles, setToggles] = useState({mic: 'false', headphone: 'false'})
@@ -39,8 +39,13 @@ export default function sidebar({friendsList, servers, selectedServer, setSelect
     return location.pathname === path ? true : false
   }
 
-  const [ friendsCopy, setFriendsCopy ] = useState(localStorage.getItem('friends') ? JSON.parse(localStorage.getItem('friends')) : [...friendsList])
-  localStorage.setItem('friends', JSON.stringify(friendsCopy))
+  const [ friendsCopy, setFriendsCopy ] = useState([])
+
+  useState(() => {
+    const result = JSON.parse(localStorage.getItem('friends')) ? JSON.parse(localStorage.getItem('friends')) : [...friendsList]
+    setFriendsCopy(result)
+    localStorage.setItem('friends', JSON.stringify(result))
+  }, [])
 
   const modifyFriends = (name) => {
     const modifiedArray = friendsCopy.filter((friend, index) => friend.name !== name)
@@ -48,7 +53,7 @@ export default function sidebar({friendsList, servers, selectedServer, setSelect
     localStorage.setItem('friends', JSON.stringify(modifiedArray))
   } 
 
-  const paths = ['/friends', '/nitro', '/messageRequests', '/shop']
+  const paths = ['/friends', '/nitro', '/messageRequests', '/shop', `${selectedUser ? '/slideNdm/' + encodeURIComponent(selectedUser.name) : '/slideNdm'}`]
 
   return (
     <div className='h-full flex'>
@@ -119,7 +124,7 @@ export default function sidebar({friendsList, servers, selectedServer, setSelect
 
                 <div className="friends mt-2">
                   {friendsCopy.sort((a, b) => a.name.localeCompare(b.name)).map((friend, index) => {
-                    return <Profile key={index} icon={friend.icon} name={friend.name} status={friend.status} position={'modified'} del={modifyFriends}/>
+                    return <Profile key={index} icon={friend.icon} name={friend.name} status={friend.status} position={'modified'} del={modifyFriends} friend={friend} setSelectedUser={setSelectedUser} />
                   })}
 
                   {!friendsCopy.length &&
@@ -133,7 +138,7 @@ export default function sidebar({friendsList, servers, selectedServer, setSelect
           </>
         }
 
-        { paramServer && serverExists &&
+        { paramServer && serverExists && !selectedUser &&
           <ServerSidebarContent servers={servers} selectedServer={selectedServer}/>
         }
 

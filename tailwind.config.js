@@ -17,6 +17,7 @@ export default {
         textOffWhite: '#f2f3f5',
         iconLightGrey: '#b5bac1',
         indicatorBg: '#393c41',
+        inputGrey: '#383a40',
         indicatorGrey: '#7d818b',
         indicatorYellow: '#f0b232',
         brightGreen: '#23a559',

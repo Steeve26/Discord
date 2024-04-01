@@ -94,19 +94,24 @@ function App() {
     setModifiedFriends(getFriends(friends))
   }, [])
 
+  
+  const [ selectedUser, setSelectedUser ] = useState()
+  
   useEffect(() => {
     seFriendFilter('online')
+    if(!location.pathname.includes('/slideNdm')) 
+    setSelectedUser()
   }, [location.pathname])
-  
+
   return (
     <main className=" h-svh min-w-[1020px] flex bg-secondary overflow-X-auto overflow-y-hidden ">
-      <Sidebar friendsList={modifiedFriends} servers={servers} selectedServer={selectedServer} setSelectedServer={setSelectedServer} paramServer={paramServer} serverExists={serverExists} setServerExists={setServerExists}/>
+      {modifiedFriends.length && <Sidebar friendsList={modifiedFriends} servers={servers} selectedServer={selectedServer} setSelectedServer={setSelectedServer} paramServer={paramServer} serverExists={serverExists} setServerExists={setServerExists} selectedUser={selectedUser} setSelectedUser={setSelectedUser}/>}
       <section className="w-full flex flex-col">
           <Header friends={modifiedFriends} friendFilter={friendFilter} seFriendFilter={seFriendFilter} servers={servers} selectedServer={selectedServer} serverExists={serverExists}/>
         <div className="bottomSection flex flex-grow">
           
           <div className="mainContent w-full">
-            <Routes friendsList={modifiedFriends} friendFilter={friendFilter} servers={servers} selectedServer={selectedServer} setSelectedServer={setSelectedServer} paramServer={paramServer} setParamServer={setParamServer} serverExists={serverExists} setServerExists={setServerExists}/>
+            <Routes friendsList={modifiedFriends} friendFilter={friendFilter} servers={servers} selectedServer={selectedServer} setSelectedServer={setSelectedServer} paramServer={paramServer} setParamServer={setParamServer} serverExists={serverExists} setServerExists={setServerExists} selectedUser={selectedUser} setSelectedUser={setSelectedUser}/>
           </div>
 
           { location.pathname === '/friends' && 
