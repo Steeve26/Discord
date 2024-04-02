@@ -1,11 +1,11 @@
 import React from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
-export default function discordServer({name, icon, index, type, iconType, background, hoverColor, selectedServer, setSelectedServer, serverExists, setServerExists }) {
+export default function discordServer({name, icon, index, type, iconType, background, hoverColor, selectedServer, setSelectedServer, serverExists, setServerExists, selectedUser }) {
   const navigate = useNavigate()
   const location = useLocation()
 
-  const paths = ['/friends', '/nitro', '/messageRequests', '/shop']
+  const paths = ['/friends', '/nitro', '/messageRequests', '/shop', `${selectedUser ? '/slideNdm/' + encodeURIComponent(selectedUser.name) : '/slideNdm'}`]
 
   const handleServerSelection = () => {
     if(type == 'action')

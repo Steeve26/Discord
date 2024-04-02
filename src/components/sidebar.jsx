@@ -3,7 +3,7 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import { FaMicrophone, FaMicrophoneSlash } from "react-icons/fa";
 import { GoPlus } from "react-icons/go";
 import { RiSettings5Fill } from "react-icons/ri";
-import logo from'../assets/discord-logo.png'
+import logo from'../assets/discord-logo grey.png'
 import Friend from '../assets/icons/friend';
 import Nitro from '../assets/icons/nitro';
 import Messages from '../assets/icons/message';
@@ -19,7 +19,7 @@ import headOn from '../assets/headphone-on.mp3';
 import Status from '../components/status'
 import ServerSidebarContent from "./serverSidebarContent";
 
-export default function sidebar({friendsList, servers, selectedServer, setSelectedServer, paramServer, serverExists, setServerExists, selectedUser, setSelectedUser, updateStoredFriends}) {
+export default function sidebar({friendsList, servers, selectedServer, setSelectedServer, paramServer, serverExists, setServerExists, selectedUser, setSelectedUser, updateStoredFriends, selectedUserAccount}) {
 
   const location = useLocation()
   const [toggles, setToggles] = useState({mic: 'false', headphone: 'false'})
@@ -72,12 +72,12 @@ export default function sidebar({friendsList, servers, selectedServer, setSelect
             <div key={index}>
               <DiscordServer servers={servers} name={server.name} icon={server.icon} index={index} type={server.type} 
                 iconType={server.iconType} background={server.background} hoverColor={server.hoverColor} selectedServer={selectedServer} 
-                setSelectedServer={setSelectedServer} serverExists={serverExists} setServerExists={setServerExists}/>
+                setSelectedServer={setSelectedServer} serverExists={serverExists} setServerExists={setServerExists} selectedUser={selectedUser}/>
               <hr className='border-highlightLightGrey w-[50%] mx-auto my-1 mt-2' />
             </div> :
             <DiscordServer servers={servers} key={index} name={server.name} icon={server.icon} index={index} type={server.type} 
               iconType={server.iconType} background={server.background} hoverColor={server.hoverColor} selectedServer={selectedServer} 
-              setSelectedServer={setSelectedServer} serverExists={serverExists} setServerExists={setServerExists}/>
+              setSelectedServer={setSelectedServer} serverExists={serverExists} setServerExists={setServerExists} selectedUser={selectedUser}/>
           )}
         </div>
       </div>
@@ -155,14 +155,19 @@ export default function sidebar({friendsList, servers, selectedServer, setSelect
         <div className="userBar flex bg-primaryLight min-h-[50px] pl-1 px-2 py-1 mt-auto">
           <div className="profile flex items-center gap-2 flex-1 hover:bg-highlightLightGrey rounded-[4px] py-1 pl-2">
             <div className="icon w-[32px] h-[32px] relative">
-              <img src="https://cdn.discordapp.com/avatars/332771468276400129/18b4eb561bb3b6fbe8c06c8a4bcc9768.webp?size=40" alt="user ico"
+              {/* <img src="https://cdn.discordapp.com/avatars/332771468276400129/18b4eb561bb3b6fbe8c06c8a4bcc9768.webp?size=40" alt="user icon"
+                className="rounded-2xl " /> */}
+              <img src={selectedUserAccount.icon} alt="user icon"
                 className="rounded-2xl " />
-              <Status status={'online'}/>
+              {/* <Status status={'online'}/> */}
+              <Status status={selectedUserAccount.status}/>
             </div>
 
             <div className="text-textGrey font-ggSans">
-              <p className="font-medium text-sm text-white">Estif</p>
-              <p className="text-xs">Online</p>
+              {/* <p className="font-medium text-sm text-white">Estif</p>
+              <p className="text-xs">Online</p> */}
+              <p className="font-medium text-sm text-white">{selectedUserAccount.name}</p>
+              <p className="text-xs">{selectedUserAccount.status}</p>
             </div>
           </div>
 

@@ -7,7 +7,7 @@ import Shop from '../pages/shop'
 import Messaging from "../pages/messaging"
 import ServerContent from "../pages/serverContent"
 
-export default function routes({friendsList, friendFilter, servers, selectedServer, setSelectedServer, setParamServer, serverExists, setServerExists, selectedUser, setSelectedUser}) {
+export default function routes({friendsList, friendFilter, servers, selectedServer, setSelectedServer, setParamServer, serverExists, setServerExists, selectedUser, setSelectedUser, selectedUserAccount}) {
   return (
     <Routes>
       <Route path="/" element={<Navigate to={'/friends'}/>} />

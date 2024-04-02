@@ -1,6 +1,7 @@
-import Sidebar from "./components/sidebar"
 import { useLocation, useParams } from "react-router-dom"
+import Sidebar from "./components/sidebar"
 import Header from "./components/header"
+import UserSelector from "./components/userSelector"
 import Routes from "./routes/routes"
 import { useEffect, useState } from "react"
 import midJourney from './assets/midjourney.svg'
@@ -36,6 +37,7 @@ function App() {
     {name: 'BloodHound', icon: 'https://cdn.discordapp.com/avatars/406204050477154314/e7e4626b4241fe9dd3c5ed0097d88366.webp?size=40', status: 'offline'}, 
     {name: 'Robby', icon: 'https://cdn.discordapp.com/avatars/465172213675589634/652feb03e7faf028a6c232e8093db27c.webp?size=40', status: 'offline'}, 
     {name: 'BristleB', icon: 'https://cdn.discordapp.com/avatars/457844649831432192/5c7bb4e8c96ecb89af8f45bff26f206b.webp?size=40', status: 'offline'},
+    {name: 'Estif', icon: 'https://cdn.discordapp.com/avatars/332771468276400129/18b4eb561bb3b6fbe8c06c8a4bcc9768.webp?size=40', status: 'offline'}, 
     {name: 'mikes0ap', icon: 'https://cdn.discordapp.com/avatars/586649116516417537/490f60ba50f5b2e98b3b685a65a2cbd6.webp?size=40', status: 'offline'}, 
     {name: 'rogueWanted47', icon: 'https://cdn.discordapp.com/avatars/548543803133394955/cac5e802a04c203480e5f754130883ab.webp?size=40', status: 'offline'}
   ]
@@ -89,12 +91,16 @@ function App() {
   const [ selectedServer, setSelectedServer ] = useState('default')
   const [ paramServer, setParamServer ] = useState('')
   const [ serverExists, setServerExists ] = useState()
+  const [ selectedUserAccount, setSelectedUserAccount ] = useState()
 
   useEffect(() => {
+    const storedUser = localStorage.getItem('account')
+    if (selectedUserAccount) 
     setModifiedFriends(getFriends(friends))
-  }, [])
+    else 
+    storedUser && setSelectedUserAccount(JSON.parse(storedUser))
+  }, [selectedUserAccount])
 
-  
   const [ selectedUser, setSelectedUser ] = useState()
   
   useEffect(() => {
@@ -127,13 +133,13 @@ function App() {
 
   return (
     <main className=" h-svh min-w-[1020px] flex bg-secondary overflow-X-auto overflow-y-hidden ">
-      {modifiedFriends.length && <Sidebar friendsList={modifiedFriends} servers={servers} selectedServer={selectedServer} setSelectedServer={setSelectedServer} paramServer={paramServer} serverExists={serverExists} setServerExists={setServerExists} selectedUser={selectedUser} setSelectedUser={setSelectedUser} updateStoredFriends={updateStoredFriends}/>}
+      {modifiedFriends.length && <Sidebar friendsList={modifiedFriends} servers={servers} selectedServer={selectedServer} setSelectedServer={setSelectedServer} paramServer={paramServer} serverExists={serverExists} setServerExists={setServerExists} selectedUser={selectedUser} setSelectedUser={setSelectedUser} updateStoredFriends={updateStoredFriends} selectedUserAccount={selectedUserAccount}/>}
       <section className="w-full flex flex-col">
           <Header friends={modifiedFriends} friendFilter={friendFilter} seFriendFilter={seFriendFilter} servers={servers} selectedServer={selectedServer} serverExists={serverExists}/>
         <div className="bottomSection flex flex-grow">
           
           <div className="mainContent w-full">
-            <Routes friendsList={modifiedFriends} friendFilter={friendFilter} servers={servers} selectedServer={selectedServer} setSelectedServer={setSelectedServer} paramServer={paramServer} setParamServer={setParamServer} serverExists={serverExists} setServerExists={setServerExists} selectedUser={selectedUser} setSelectedUser={setSelectedUser}/>
+            <Routes friendsList={modifiedFriends} friendFilter={friendFilter} servers={servers} selectedServer={selectedServer} setSelectedServer={setSelectedServer} paramServer={paramServer} setParamServer={setParamServer} serverExists={serverExists} setServerExists={setServerExists} selectedUser={selectedUser} setSelectedUser={setSelectedUser} selectedUserAccount={selectedUserAccount}/>
           </div>
 
           { location.pathname === '/friends' && 
@@ -149,6 +155,8 @@ function App() {
         </div>
 
       </section>
+
+      <UserSelector friends={friends} selectedUserAccount={selectedUserAccount} setSelectedUserAccount={setSelectedUserAccount}/>
     </main>
   )
 }

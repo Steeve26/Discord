@@ -1,6 +1,13 @@
-import React, { useEffect } from 'react'
-import wumpus from '../assets/wumpus.gif'
+import React, { useEffect, useState } from 'react'
+import wumpus from '../assets/wumpus.gif';
+import Sticker from '../assets/stickerDark.png';
+import Gif from '../assets/gifDark.png'
+import StickerHov from '../assets/stickerWhite.png';
+import GifHov from '../assets/gifWhite.png'
 import { useLocation, useParams } from 'react-router-dom'
+import { BsFillPlusCircleFill } from "react-icons/bs";
+import { FaGift } from "react-icons/fa";
+import { BsFillEmojiHeartEyesFill } from "react-icons/bs";
 
 export default function Messaging({selectedUser, setSelectedUser, friendsList}) {
   const {userName} = useParams()
@@ -10,24 +17,17 @@ export default function Messaging({selectedUser, setSelectedUser, friendsList}) 
     if (!userName)
     return
     const result = friendsList.find(user => user.name === userName)
-    console.log('selected here 2', result, userName);
     return result
   }
   
   useEffect(() => {
-    console.log('selected here', selectedUser);
-    !selectedUser && console.log('selected user test');
-    // console.log('selected found', findUser(userName))
     const result = findUser(userName)
-    // setSelectedUser(findUser(userName))
     if(userName) {
-      console.log('sele usr tst', typeof userName);
-      console.log('selected test', findUser(userName));
-      console.log('selected test', friendsList);
-      setSelectedUser(findUser(userName))
+      setSelectedUser(result)
     }
   }, [location, friendsList])
-  
+
+  const [imageState, setImageState] = useState(['dark', 'dark']) 
 
   return (
     <div className='flex flex-col justify-between h-full'>
@@ -57,12 +57,14 @@ export default function Messaging({selectedUser, setSelectedUser, friendsList}) 
           
           <div className="formWrapper h-[70px] px-4 ">
             <div className="formContainer bg-inputGrey px-3 py-2 flex rounded-md">
-              <button></button>
-              <input type="text" className='bg-transparent placeholder:text-[#6d6f78] w-full outline-none text-textOffWhite' placeholder={'Message @' + selectedUser.name} />
-              <button></button>
-              <button></button>
-              <button></button>
-              <button></button>
+              <button className=' text-iconLightGrey hover:text-textOffWhite duration-200'><BsFillPlusCircleFill size={20}/></button>
+              <input type="text" className='bg-transparent placeholder:text-[#6d6f78] w-full outline-none text-textOffWhite pl-3' placeholder={'Message @' + selectedUser.name} />
+              <div className="actions flex gap-3">
+                <button className=' text-iconLightGrey hover:text-textOffWhite duration-200'><FaGift size={20}/></button>
+                <button className=' text-iconLightGrey hover:text-textOffWhite duration-200'><img src={ imageState[0] === 'dark' ? Gif : GifHov} width={30} alt="icon" onMouseEnter={() => setImageState(['white', 'dark'])} onMouseLeave={() => setImageState(['dark', 'dark'])}/></button>
+                <button className=' text-iconLightGrey hover:text-textOffWhite duration-240'><img src={ imageState[1] === 'dark' ? Sticker : StickerHov} width={30} alt="icon" onMouseEnter={() => setImageState(['dark', 'white'])} onMouseLeave={() => setImageState(['dark', 'dark'])}/></button>
+                <button className=' text-iconLightGrey hover:text-[#fcc145] duration-200'><BsFillEmojiHeartEyesFill size={20}></BsFillEmojiHeartEyesFill></button>
+              </div>
             </div>
           </div>
         </>
