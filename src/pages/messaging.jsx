@@ -30,7 +30,7 @@ export default function Messaging({selectedUser, setSelectedUser, friendsList}) 
   const [imageState, setImageState] = useState(['dark', 'dark']) 
 
   const returnCorrectImage = (imageURL) => {
-    return imageURL.replace('=40', "=100")
+    return imageURL.replace('=40', "=300")
   }
 
   return (
