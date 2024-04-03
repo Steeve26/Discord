@@ -82,7 +82,7 @@ export default function sidebar({friendsList, servers, selectedServer, setSelect
         </div>
       </div>
 
-      <div className="side-sidebar w-60 bg-secondaryDark flex flex-col">
+      <div className="side-sidebar w-[278px] bg-secondaryDark flex flex-col">
         { paths.includes(location.pathname) &&
           <>
             <div className='searchBar h-[50px] shadow-borderShadow flex items-center justify-center px-3'>
@@ -152,8 +152,8 @@ export default function sidebar({friendsList, servers, selectedServer, setSelect
           <ServerSidebarContent servers={servers} selectedServer={selectedServer}/>
         }
 
-        <div className="userBar flex bg-primaryLight min-h-[50px] pl-1 px-2 py-1 mt-auto">
-          <div className="profile flex items-center gap-2 flex-1 hover:bg-highlightLightGrey rounded-[4px] py-1 pl-2">
+        <div className="userBar flex gap-3 bg-primaryLight min-h-[50px] pl-1 px-2 py-1 mt-auto">
+          <div className="profile flex items-center gap-2 flex-1 hover:bg-highlightLightGrey rounded-[4px] py-1 px-2">
             <div className="icon w-[32px] h-[32px] relative">
               {/* <img src="https://cdn.discordapp.com/avatars/332771468276400129/18b4eb561bb3b6fbe8c06c8a4bcc9768.webp?size=40" alt="user icon"
                 className="rounded-2xl " /> */}

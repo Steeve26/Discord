@@ -58,6 +58,8 @@ function App() {
   ]
 
   const getFriends = (friends) => {
+    const index = friends.findIndex(friend => friend.name === selectedUserAccount.name)
+    friends.splice(index, 1)
     const randomLimit = Math.floor(Math.random() * 12)
 
     const randomIndexes = [];
@@ -132,7 +134,7 @@ function App() {
 
 
   return (
-    <main className=" h-svh min-w-[1020px] flex bg-secondary overflow-X-auto overflow-y-hidden ">
+    <main className=" h-svh min-w-[1044px] flex bg-secondary overflow-X-auto overflow-y-hidden ">
       {modifiedFriends.length && <Sidebar friendsList={modifiedFriends} servers={servers} selectedServer={selectedServer} setSelectedServer={setSelectedServer} paramServer={paramServer} serverExists={serverExists} setServerExists={setServerExists} selectedUser={selectedUser} setSelectedUser={setSelectedUser} updateStoredFriends={updateStoredFriends} selectedUserAccount={selectedUserAccount}/>}
       <section className="w-full flex flex-col">
           <Header friends={modifiedFriends} friendFilter={friendFilter} seFriendFilter={seFriendFilter} servers={servers} selectedServer={selectedServer} serverExists={serverExists}/>
@@ -156,7 +158,7 @@ function App() {
 
       </section>
 
-      <UserSelector friends={friends} selectedUserAccount={selectedUserAccount} setSelectedUserAccount={setSelectedUserAccount}/>
+      { !selectedUserAccount && !localStorage.getItem('account') && <UserSelector friends={friends} selectedUserAccount={selectedUserAccount} setSelectedUserAccount={setSelectedUserAccount}/>}
     </main>
   )
 }

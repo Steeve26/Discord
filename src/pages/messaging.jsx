@@ -29,12 +29,16 @@ export default function Messaging({selectedUser, setSelectedUser, friendsList}) 
 
   const [imageState, setImageState] = useState(['dark', 'dark']) 
 
+  const returnCorrectImage = (imageURL) => {
+    return imageURL.replace('=40', "=100")
+  }
+
   return (
     <div className='flex flex-col justify-between h-full'>
       { selectedUser && 
         <>
           <div className="content px-4 pb-12 flex flex-col justify-end h-full overflow-y-auto">
-            <img src={selectedUser.icon} alt="icon" className=' size-20 rounded-full'/>
+            <img src={returnCorrectImage(selectedUser.icon)} alt="icon" className=' size-20 rounded-full'/>
             <h2 className='text-3xl text-textOffWhite font-ggSansxl my-3'>{selectedUser.name}</h2>
             <p className='text-iconLightGrey'>This is the beginning of your direct message history with {selectedUser.name}.</p>
             <div className="info flex items-center">
@@ -58,9 +62,9 @@ export default function Messaging({selectedUser, setSelectedUser, friendsList}) 
           <div className="formWrapper h-[70px] px-4 ">
             <div className="formContainer bg-inputGrey px-3 py-2 flex rounded-md">
               <button className=' text-iconLightGrey hover:text-textOffWhite duration-200'><BsFillPlusCircleFill size={20}/></button>
-              <input type="text" className='bg-transparent placeholder:text-[#6d6f78] w-full outline-none text-textOffWhite pl-3' placeholder={'Message @' + selectedUser.name} />
+              <input type="text" className='bg-transparent placeholder:text-[#6d6f78] w-full outline-none text-textOffWhite px-3' placeholder={'Message @' + selectedUser.name} />
               <div className="actions flex gap-3">
-                <button className=' text-iconLightGrey hover:text-textOffWhite duration-200'><FaGift size={20}/></button>
+                <button className=' text-iconLightGrey hover:text-textOffWhite duration-200'><FaGift size={21}/></button>
                 <button className=' text-iconLightGrey hover:text-textOffWhite duration-200'><img src={ imageState[0] === 'dark' ? Gif : GifHov} width={30} alt="icon" onMouseEnter={() => setImageState(['white', 'dark'])} onMouseLeave={() => setImageState(['dark', 'dark'])}/></button>
                 <button className=' text-iconLightGrey hover:text-textOffWhite duration-240'><img src={ imageState[1] === 'dark' ? Sticker : StickerHov} width={30} alt="icon" onMouseEnter={() => setImageState(['dark', 'white'])} onMouseLeave={() => setImageState(['dark', 'dark'])}/></button>
                 <button className=' text-iconLightGrey hover:text-[#fcc145] duration-200'><BsFillEmojiHeartEyesFill size={20}></BsFillEmojiHeartEyesFill></button>

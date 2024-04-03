@@ -81,10 +81,10 @@ export default function header({friends, friendFilter, seFriendFilter, selectedS
 
       { selectedServer && selectedServer !== 'default' &&
         <div className='serverIcons flex gap-3'>
-          <button><Thread/></button>
-          <button><IoMdNotificationsOff size={25}/></button>
-          <button><BsFillPinAngleFill size={25}/></button>
-          <button><Group/></button>
+          <button className='hover:text-[#dbdee1]'><Thread/></button>
+          <button className='hover:text-[#dbdee1]'><IoMdNotificationsOff size={25}/></button>
+          <button className='hover:text-[#dbdee1]'><BsFillPinAngleFill size={25}/></button>
+          <button className='hover:text-[#dbdee1]'><Group/></button>
           <div className="searchBox flex items-center bg-primary rounded px-2 py-[2px] mx-2 duration-200">
             <input type="text" placeholder='Search' className='bg-transparent w-full pl-1 outline-none text-sm placeholder:text-sm focus:w-60 duration-200 text-textOffWhite'/>
             <IoSearch size={18}/>
