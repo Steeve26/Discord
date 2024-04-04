@@ -97,8 +97,11 @@ function App() {
 
   useEffect(() => {
     const storedUser = localStorage.getItem('account')
-    if (selectedUserAccount) 
-    setModifiedFriends(getFriends(friends))
+    if (selectedUserAccount) {
+      window.scrollBy({top: 0, left: 0, behavior: 'smooth'})
+      // window.scrollTo(0, 0)
+      setModifiedFriends(getFriends(friends))
+    }
     else 
     storedUser && setSelectedUserAccount(JSON.parse(storedUser))
   }, [selectedUserAccount])
