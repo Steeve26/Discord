@@ -82,7 +82,7 @@ export default function sidebar({friendsList, servers, selectedServer, setSelect
         </div>
       </div>
 
-      <div className="side-sidebar w-[278px] bg-secondaryDark flex flex-col">
+      <div className="side-sidebar w-[270px] bg-secondaryDark flex flex-col">
         { paths.includes(location.pathname) &&
           <>
             <div className='searchBar h-[50px] shadow-borderShadow flex items-center justify-center px-3'>
