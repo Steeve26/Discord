@@ -39,7 +39,7 @@ function App() {
     {name: 'BristleB', icon: 'https://cdn.discordapp.com/avatars/457844649831432192/5c7bb4e8c96ecb89af8f45bff26f206b.webp?size=40', status: 'offline'},
     {name: 'Estif', icon: 'https://cdn.discordapp.com/avatars/332771468276400129/18b4eb561bb3b6fbe8c06c8a4bcc9768.webp?size=40', status: 'offline'}, 
     {name: 'mikes0ap', icon: 'https://cdn.discordapp.com/avatars/586649116516417537/490f60ba50f5b2e98b3b685a65a2cbd6.webp?size=40', status: 'offline'}, 
-    {name: 'rogueWanted47', icon: 'https://cdn.discordapp.com/avatars/548543803133394955/cac5e802a04c203480e5f754130883ab.webp?size=40', status: 'offline'}
+    {name: 'rogueWanted47', icon: 'https://cdn.discordapp.com/avatars/548543803133394955/b3c86cedc5940d011901a5da710f2f39.webp?size=40', status: 'offline'}
   ]
 
   const servers = [
